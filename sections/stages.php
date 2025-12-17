@@ -166,8 +166,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600 text-sm">Scale & Transformation
-                            Stage 4
+                        <p class="text-gray-600 text-sm">
                             Work with the Huduma Whitebox team and partners to role out approved products or services
                             guided by Government procurement law</p>
                     </div>
