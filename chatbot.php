@@ -1,1142 +1,1435 @@
 <!-- Back to Top Button -->
 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="back-to-top"
-    class="fixed bottom-6 centre-6 w-12 h-12 ml-4 gradient-bgg  bg-accent text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition duration-300 z-40">
+    class="fixed bottom-6 left-6 w-12 h-12 bg-[#006600] text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:scale-110 z-40 hover:bg-[#004d00]">
     <i class="fas fa-chevron-up"></i>
 </button>
 
-
-
 <style>
-    @keyframes typingAnimation {
+    /* Custom Colors */
+    :root {
+        --primary: #000000;
+        --accent: #006600;
+        --dark: #0f172a;
+        --danger: #DE2910;
+        --light: #f8fafc;
+        --black: #000000;
+        --accent-light: #008800;
+        --accent-dark: #004400;
+        --accent-transparent: rgba(0, 102, 0, 0.1);
+    }
 
-        0%,
-        60%,
-        100% {
+    /* Animations */
+    @keyframes slideInRight {
+        from {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes bounce {
+        0%, 100% {
             transform: translateY(0);
         }
-
-        30% {
-            transform: translateY(-4px);
-        }
-    }
-
-    /* Add these styles to your CSS */
-    @keyframes gentle-pulse {
-
-        0%,
-        100% {
-            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-        }
-
-        50% {
-            box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-        }
-    }
-
-    .animate-gentle-pulse {
-        animation: gentle-pulse 3s infinite;
-    }
-
-    @keyframes bounce-slow {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
         50% {
             transform: translateY(-5px);
         }
     }
 
-    .animate-bounce-slow {
-        animation: bounce-slow 2s infinite;
-    }
-
-    @keyframes float-gentle {
-
-        0%,
-        100% {
-            transform: translateY(0) rotate(0deg);
-        }
-
-        33% {
-            transform: translateY(-5px) rotate(1deg);
-        }
-
-        66% {
-            transform: translateY(5px) rotate(-1deg);
-        }
-    }
-
-    .group:hover .animate-gentle-pulse {
-        animation: float-gentle 3s ease-in-out infinite;
-    }
-
-    /* Smooth transitions */
-    .transition-all {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Image fallback styles */
-    img[src*="giphy"] {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
-
-    /* Floating animation */
-
-
-    .animate-float {
-        animation: float 3s ease-in-out infinite;
-    }
-
-    /* Slow pulse animation */
-    @keyframes pulse-slow {
-
-        0%,
-        100% {
-            opacity: 0.2;
-        }
-
-        50% {
+    @keyframes typing {
+        0%, 60%, 100% {
             opacity: 0.4;
+            transform: translateY(0);
+        }
+        30% {
+            opacity: 1;
+            transform: translateY(-2px);
         }
     }
 
-    .animate-pulse-slow {
-        animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    @keyframes pulse-green {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(0, 102, 0, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 0 10px rgba(0, 102, 0, 0);
+        }
     }
 
-    /* Smooth transitions */
-    .transition-all {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Shadow utilities */
-    .shadow-xl {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* Animation Classes */
+    .animate-slide-in-right {
+        animation: slideInRight 0.3s ease-out;
     }
 
-    .hover\:shadow-2xl:hover {
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    .animate-slide-in-left {
+        animation: slideInLeft 0.3s ease-out;
+    }
+
+    .animate-bounce {
+        animation: bounce 2s infinite;
+    }
+
+    .animate-pulse-green {
+        animation: pulse-green 2s infinite;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-out;
     }
 
     .typing-dot {
-        animation: typingAnimation 1.4s infinite ease-in-out;
+        animation: typing 1.4s infinite ease-in-out;
     }
 
-    .typing-dot:nth-child(1) {
-        animation-delay: 0s;
+    /* Color Classes */
+    .bg-primary { background-color: var(--primary); }
+    .bg-accent { background-color: var(--accent); }
+    .bg-dark { background-color: var(--dark); }
+    .bg-danger { background-color: var(--danger); }
+    .bg-light { background-color: var(--light); }
+    .bg-accent-light { background-color: var(--accent-light); }
+    .bg-accent-dark { background-color: var(--accent-dark); }
+    .bg-accent-transparent { background-color: var(--accent-transparent); }
+    
+    .text-primary { color: var(--primary); }
+    .text-accent { color: var(--accent); }
+    .text-dark { color: var(--dark); }
+    .text-danger { color: var(--danger); }
+    .text-light { color: var(--light); }
+
+    /* Gradient Classes */
+    .gradient-accent {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
     }
 
-    .typing-dot:nth-child(2) {
-        animation-delay: 0.2s;
+    .gradient-dark {
+        background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
     }
 
-    .typing-dot:nth-child(3) {
-        animation-delay: 0.4s;
+    /* Message Bubbles */
+    .message-bubble {
+        max-width: 70%;
+        padding: 10px 14px;
+        border-radius: 18px;
+        margin: 6px 0;
+        position: relative;
+        word-wrap: break-word;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .chat-bg-pattern {
-        background-color: #e6ebf0;
-        background-image:
-            radial-gradient(#d1d9e0 1px, transparent 1px),
-            radial-gradient(#d1d9e0 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 0 0, 10px 10px;
+    .message-bubble.user {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 4px;
+    }
+
+    .message-bubble.bot {
+        background: white;
+        margin-right: auto;
+        border-bottom-left-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Status Indicators */
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    .status-online {
+        background-color: var(--accent);
+        animation: pulse-green 2s infinite;
+    }
+
+    .status-typing {
+        background-color: #FFA500;
+    }
+
+    .status-offline {
+        background-color: #666;
+    }
+
+    /* Chat Container States */
+    .chat-minimized {
+        height: 60px;
+        width: 350px;
+        bottom: 100px;
+    }
+
+    .chat-maximized {
+        width: 90vw;
+        height: 90vh;
+        max-width: 1200px;
+        max-height: 800px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .chat-normal {
+        width: 380px;
+        height: 600px;
+    }
+
+    /* Custom Scrollbar */
+    .scrollbar-green::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .scrollbar-green::-webkit-scrollbar-track {
+        background: rgba(0, 102, 0, 0.05);
+        border-radius: 10px;
+    }
+
+    .scrollbar-green::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        border-radius: 10px;
+    }
+
+    /* Menu Styles */
+    .menu-item {
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--dark);
+    }
+
+    .menu-item:hover {
+        background-color: rgba(0, 102, 0, 0.05);
+    }
+
+    .menu-divider {
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin: 4px 0;
+    }
+
+    /* Quick Actions - Collapsible */
+    .quick-actions-section {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .quick-actions-section.minimized {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .quick-actions-section.minimized .quick-actions-grid {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        pointer-events: none;
+    }
+
+    .quick-actions-section:not(.minimized) .quick-actions-grid {
+        max-height: 200px;
+        opacity: 1;
+        margin-top: 12px;
+        pointer-events: auto;
+    }
+
+    .quick-actions-toggle {
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s;
+    }
+
+    .quick-actions-toggle:hover {
+        opacity: 0.8;
+    }
+
+    .quick-actions-toggle .toggle-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .quick-actions-section.minimized .toggle-icon {
+        transform: rotate(-90deg);
+    }
+
+    .quick-action-card {
+        background: white;
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 102, 0, 0.1);
+        min-width: 120px;
+        flex: 1;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .quick-action-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 0, 0.1);
+        border-color: var(--accent);
+    }
+
+    .quick-action-card .icon-wrapper {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
+    /* Floating Menu */
+    .floating-menu {
+        position: absolute;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        min-width: 200px;
+        z-index: 1000;
+        overflow: hidden;
+        border: 1px solid rgba(0, 102, 0, 0.1);
+    }
+
+    /* Timestamp */
+    .message-time {
+        font-size: 11px;
+        opacity: 0.7;
+        text-align: right;
+        margin-top: 4px;
+    }
+
+    /* User Avatar */
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        color: white;
+    }
+
+    /* Input Styling */
+    .chat-input {
+        background: white;
+        border: 1px solid rgba(0, 102, 0, 0.2);
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+
+    .chat-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(0, 102, 0, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .chat-normal {
+            width: calc(100vw - 32px);
+            height: 70vh;
+            right: 16px;
+        }
+
+        .chat-maximized {
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            border-radius: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .quick-action-card {
+            min-width: 100px;
+        }
+    }
+
+    /* Typing Animation */
+    .typing-container {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 6px 12px;
+        background: white;
+        border-radius: 18px;
+        width: fit-content;
+    }
+
+    /* Action Button */
+    .action-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .action-button:hover {
+        background-color: rgba(0, 102, 0, 0.1);
+        transform: scale(1.1);
+    }
+
+    /* Header Gradient */
+    .header-gradient {
+        background: linear-gradient(135deg, var(--dark) 0%, #1e293b 50%, var(--accent-dark) 100%);
+    }
+
+    /* Quick Action Bar (Minimized State) */
+    .quick-actions-bar {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 8px 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin-top: 8px;
+    }
+
+    .quick-actions-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .quick-action-mini {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        background: white;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 102, 0, 0.1);
+        font-size: 12px;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+
+    .quick-action-mini:hover {
+        background: var(--accent-transparent);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+    }
+
+    .quick-action-mini i {
+        font-size: 14px;
+    }
+
+    /* Quick Actions - Collapsed by default styles */
+    .quick-actions-section.collapsed-by-default {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .quick-actions-section.collapsed-by-default .quick-actions-grid {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        pointer-events: none;
+    }
+
+    .quick-actions-section.collapsed-by-default .toggle-icon {
+        transform: rotate(-90deg);
+    }
+
+    .quick-actions-section.collapsed-by-default .quick-actions-bar {
+        display: flex;
+    }
+
+    .quick-actions-section:not(.collapsed-by-default) .quick-actions-bar {
+        display: none;
     }
 </style>
 
-
-<!-- Chatbot Icon -->
-<!-- <div class="fixed bottom-6 right-6 w-14 h-14 bg-accent/80 rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer z-50 transition-transform hover:scale-110" id="chatbot-icon">
-        <i class="fas  fa-comment-dots text-xl fas-2x"></i>
-        <div class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hidden" id="notification-badge">1</div>
-    </div> -->
-<!-- <div class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-accent to-blue-500 rounded-full flex items-center justify-center text-white shadow-xl cursor-pointer z-50 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-float"
+<!-- Green Themed Chatbot Icon -->
+<div class="fixed bottom-6 right-6 w-16 h-16 rounded-full flex items-center justify-center cursor-pointer z-50 transition-all duration-300 hover:scale-110 group animate-bounce"
     id="chatbot-icon">
-    <div class="absolute inset-0 rounded-full bg-accent animate-pulse-slow opacity-70"></div>
-    <i class="fas fa-comment-dots text-2xl relative z-10"></i>
-    < !-- <div class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold animate-pulse shadow-md"
-        id="notification-badge">3</div> - ->
-</div> -->
-
-
-<div class="fixed bottom-6 right-6 w-16 h-16 rounded-full flex items-center justify-center cursor-pointer z-50 transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-xl group"
-    id="chatbot-icon">
-
-    <!-- Background with shine -->
-    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-accent shadow-inner"></div>
-    <div class="absolute top-0 left-0 w-full h-1/2 rounded-t-full bg-gradient-to-b from-white/30 to-transparent"></div>
-
-    <!-- Professional avatar -->
-    <div class="relative z-10">
-        <!-- Avatar circle -->
-        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md">
-            <!-- Professional person icon -->
-            <div class="relative">
-                <!-- Head with professional look -->
-                <div
-                    class="w-8 h-8 rounded-full bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col items-center justify-center">
-                    <!-- Glasses/smart look -->
-                    <div class="flex items-center justify-center space-x-3 mt-1">
-                        <div class="w-2 h-2 bg-gray-700 rounded-full"></div>
-                        <div class="w-2 h-2 bg-gray-700 rounded-full"></div>
-                    </div>
-                    <!-- Professional smile -->
-                    <div class="w-4 h-0.5 bg-gray-600 mt-1 rounded-full"></div>
-                </div>
-                <!-- Tie/formal indication -->
-                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-blue-600 rounded-b-full">
-                </div>
-            </div>
-        </div>
-
-        <!-- Chat notification -->
-        <div class="absolute -top-2 -right-2">
-            <div class="relative">
-                <!-- Outer ring -->
-                <div class="w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <!-- Speech bubble icon -->
-                    <div
-                        class="w-5 h-5 bg-gradient-to-r from-accent to-blue-500 rounded-full flex items-center justify-center">
-                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                    </div>
-                </div>
-                <!-- Live indicator -->
-                <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
-            </div>
-        </div>
+    
+    <!-- Green Gradient Circle -->
+    <div class="absolute inset-0 rounded-full gradient-accent animate-pulse-green"></div>
+    
+    <!-- Inner White Circle -->
+    <div class="absolute inset-2 rounded-full bg-white flex items-center justify-center">
+        <i class="fas fa-comments text-2xl text-accent"></i>
     </div>
-
-    <!-- Hover label - hidden on small screens -->
-    <div
-        class="hidden md:block absolute -top-14 right-0 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 min-w-max hover-label">
-        <div class="flex items-center gap-2 font-medium">
-            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span class="text-sm">Chat with us</span>
-        </div>
-        <div class="absolute w-3 h-3 bg-white transform rotate-45 -bottom-1.5 right-5"></div>
+    
+    <!-- Green Glow Effect -->
+    <div class="absolute -inset-2 rounded-full bg-accent opacity-20 blur-sm group-hover:opacity-30 transition-opacity"></div>
+    
+    <!-- Notification Badge -->
+    <div class="absolute -top-1 -right-1 w-6 h-6 bg-danger rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+        <i class="fas fa-bell"></i>
     </div>
-
-    <!-- Subtle pulse animation -->
-    <div class="absolute inset-0 rounded-full border border-white/20 animate-pulse-slow"></div>
+    
+    <!-- Hover Tooltip -->
+    <div class="absolute -top-12 right-0 bg-dark text-white px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap animate-slide-in-right">
+        <div class="flex items-center gap-2">
+            <div class="status-indicator status-online"></div>
+            <span class="text-sm">Whitebox Assistant</span>
+        </div>
+        <div class="absolute w-2 h-2 bg-dark transform rotate-45 -bottom-1 right-4"></div>
+    </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chatbotIcon = document.getElementById('chatbot-icon');
-        let isTyping = false;
-        let hoverTimeout;
-        let hoverEnabled = true;
-        let chatWindowOpen = false; // Track if chat window is open
-
-        // Function to check if user is typing in any input/textarea
-        function checkTyping() {
-            const activeElement = document.activeElement;
-            const isInputElement = activeElement.tagName === 'INPUT' ||
-                activeElement.tagName === 'TEXTAREA' ||
-                activeElement.isContentEditable;
-
-            return isInputElement;
-        }
-
-        // Function to check if element is inside chat window
-        function isInsideChatWindow(element) {
-            // Adjust this selector to match your chat window container
-            const chatWindow = document.querySelector('#chat-window, .chat-window, [data-chat-window]');
-            if (!chatWindow) return false;
-
-            return chatWindow.contains(element);
-        }
-
-        // Monitor typing activity - but exclude typing inside chat window
-        document.addEventListener('focusin', function (e) {
-            // Check if the focused element is inside the chat window
-            if (isInsideChatWindow(e.target)) {
-                // Don't disable hover if typing inside chat window
-                return;
-            }
-
-            if (e.target.tagName === 'INPUT' ||
-                e.target.tagName === 'TEXTAREA' ||
-                e.target.isContentEditable) {
-                isTyping = true;
-                hoverEnabled = false;
-                chatbotIcon.classList.remove('group');
-            }
-        });
-
-        document.addEventListener('focusout', function (e) {
-            // Check if the blurred element was inside the chat window
-            if (isInsideChatWindow(e.target)) {
-                return; // Don't change hover state if leaving chat window input
-            }
-
-            if (e.target.tagName === 'INPUT' ||
-                e.target.tagName === 'TEXTAREA' ||
-                e.target.isContentEditable) {
-                // Small delay before re-enabling hover
-                setTimeout(() => {
-                    isTyping = false;
-                    hoverEnabled = true;
-                    chatbotIcon.classList.add('group');
-                }, 500);
-            }
-        });
-
-        // Prevent form submit from affecting hover
-        document.addEventListener('submit', function (e) {
-            // If form is inside chat window, don't disable hover
-            if (isInsideChatWindow(e.target)) {
-                return;
-            }
-
-            // For forms outside chat window, disable hover temporarily
-            isTyping = true;
-            hoverEnabled = false;
-            chatbotIcon.classList.remove('group');
-
-            // Re-enable after form submission
-            setTimeout(() => {
-                isTyping = false;
-                hoverEnabled = true;
-                if (!isSmallScreen()) {
-                    chatbotIcon.classList.add('group');
-                }
-            }, 1000);
-        });
-
-        // Check screen size
-        function isSmallScreen() {
-            return window.innerWidth < 768;
-        }
-
-        // Check screen size and typing status before showing hover
-        function shouldShowHover() {
-            // Don't show hover on small screens or when typing outside chat window
-            return !isSmallScreen() && !isTyping && hoverEnabled;
-        }
-
-        // Modified mouseenter event
-        chatbotIcon.addEventListener('mouseenter', function () {
-            if (!shouldShowHover()) return;
-
-            // Add slight delay for better UX
-            clearTimeout(hoverTimeout);
-            hoverTimeout = setTimeout(() => {
-                if (shouldShowHover()) {
-                    // Your existing hover face animation code here
-                    // (keep your existing face animation logic)
-                }
-            }, 100);
-        });
-
-        // Modified mouseleave event
-        chatbotIcon.addEventListener('mouseleave', function () {
-            clearTimeout(hoverTimeout);
-            // Your existing mouseleave face animation code here
-        });
-
-        // Click to chat
-        chatbotIcon.addEventListener('click', function () {
-            // Add click animation
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1.1)';
-            }, 100);
-
-            // Open chat window (your implementation)
-            chatWindowOpen = true;
-            openChatWindow();
-        });
-
-        // Random face blinking effect
-        setInterval(() => {
-            if (!chatbotIcon.matches(':hover') && !isTyping) {
-                // Your existing blinking effect code here
-            }
-        }, 5000);
-
-        // Monitor screen resize to update hover behavior
-        window.addEventListener('resize', function () {
-            // If it's a small screen, ensure hover is disabled
-            if (isSmallScreen()) {
-                chatbotIcon.classList.remove('group');
-            } else if (!isTyping) {
-                chatbotIcon.classList.add('group');
-            }
-        });
-
-        // Initial check on load
-        if (isSmallScreen()) {
-            chatbotIcon.classList.remove('group');
-        }
-
-        // Add click event listener to chat window submit button
-        // This should be inside your openChatWindow function or chat window initialization
-        function setupChatWindowEvents() {
-            const chatWindow = document.querySelector('#chat-window, .chat-window, [data-chat-window]');
-            if (!chatWindow) return;
-
-            // Prevent submit button from affecting hover state
-            const submitButtons = chatWindow.querySelectorAll('button[type="submit"], .send-button, .submit-chat');
-            submitButtons.forEach(button => {
-                button.addEventListener('click', function (e) {
-                    // Don't let this click affect the hover state
-                    e.stopPropagation();
-                });
-            });
-
-            // Prevent form submission from affecting hover
-            const forms = chatWindow.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function (e) {
-                    // Don't let form submission affect hover
-                    e.stopPropagation();
-                });
-            });
-        }
-
-        // Override your openChatWindow function
-        const originalOpenChatWindow = window.openChatWindow || function () { };
-        window.openChatWindow = function () {
-            originalOpenChatWindow();
-            chatWindowOpen = true;
-            // Setup events after chat window is opened
-            setTimeout(setupChatWindowEvents, 100);
-        };
-    });
-
-    // Your openChatWindow function (make sure it's defined)
-    function openChatWindow() {
-        // Your chat window opening logic here
-        console.log('Opening chat window...');
-        // Make sure to call setupChatWindowEvents after the chat window is created
-    }
-</script>
-
-
-<!-- Chatbot Container -->
-<div class="fixed bottom-24 border border-2 border-light right-6 w-80 h-[500px] bg-white rounded-xl shadow-xl flex flex-col z-60 opacity-0 translate-y-5 pointer-events-none transition-all duration-300"
+<!-- Green Themed Chat Container -->
+<div class="fixed bottom-24 right-6 bg-white rounded-2xl shadow-2xl flex flex-col z-60 opacity-0 translate-y-5 pointer-events-none transition-all duration-300 overflow-hidden border border-accent/20 chat-normal"
     id="chatbot-container">
-    <!-- Header -->
-    <div class="bg-accent text-white p-2 rounded-t-xl flex justify-between items-center">
-        <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3">
+    
+    <!-- Header - Dark with Green Accent -->
+    <div class="header-gradient p-4 flex items-center justify-between">
+        <!-- Left Side: Contact Info -->
+        <div class="flex items-center gap-3">
+            <!-- Avatar -->
+            <div class="user-avatar">
+                <i class="fas fa-robot text-lg"></i>
+            </div>
+            
+            <!-- Contact Details -->
+            <div>
+                <h3 class="font-semibold text-white">Whitebox Assistant</h3>
+                <div class="flex items-center gap-1">
+                    <span class="status-indicator status-online"></span>
+                    <span class="text-white/90 text-sm" id="status-text">Online</span>
+                    <span class="text-white/90 text-sm hidden" id="typing-text">• typing...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side: Action Buttons -->
+        <div class="flex items-center gap-2">
+            <!-- Maximize Button -->
+            <button class="action-button text-white hover:text-accent-light"
+                id="maximize-button" title="Maximize">
+                <i class="fas fa-expand text-sm"></i>
+            </button>
+            
+            <!-- Menu Button -->
+            <div class="relative">
+                <button class="action-button text-white hover:text-accent-light"
+                    id="menu-button" title="Menu">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                
+                <!-- Floating Menu -->
+                <div class="floating-menu top-full right-0 mt-2 hidden" id="chat-menu">
+                    <div class="menu-item" data-action="new-chat">
+                        <i class="fas fa-plus text-accent"></i>
+                        <span>New Conversation</span>
+                    </div>
+                    <div class="menu-item" data-action="search">
+                        <i class="fas fa-search text-accent"></i>
+                        <span>Search Messages</span>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="menu-item" data-action="maximize">
+                        <i class="fas fa-expand text-accent"></i>
+                        <span id="maximize-text">Maximize Window</span>
+                    </div>
+                    <div class="menu-item" data-action="minimize">
+                        <i class="fas fa-window-minimize text-accent"></i>
+                        <span>Minimize</span>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="menu-item" data-action="toggle-quick-actions">
+                        <i class="fas fa-bolt text-accent"></i>
+                        <span id="quick-actions-toggle-text">Show Quick Actions</span>
+                    </div>
+                    <div class="menu-item" data-action="clear-chat">
+                        <i class="fas fa-trash-alt text-danger"></i>
+                        <span class="text-danger">Clear Chat</span>
+                    </div>
+                    <div class="menu-item" data-action="close">
+                        <i class="fas fa-times text-dark"></i>
+                        <span>Close Chat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Actions Section - Collapsed by Default -->
+    <div class="quick-actions-section collapsed-by-default bg-accent-transparent border-b border-accent/10 transition-all duration-300"
+        id="quick-actions-section">
+        <!-- Header with Toggle -->
+        <div class="px-4 pt-3">
+            <div class="flex items-center justify-between">
+                <div class="quick-actions-toggle flex items-center gap-2" id="quick-actions-toggle">
+                    <i class="fas fa-chevron-down text-accent toggle-icon text-sm"></i>
+                    <h4 class="text-sm font-medium text-dark">Quick Actions</h4>
+                </div>
+                <div class="text-xs text-gray-500">
+                    <span id="quick-actions-count">0</span> actions
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions Grid (Full View) - Hidden by default -->
+        <div class="px-4 pb-3 quick-actions-grid grid grid-cols-2 gap-3 transition-all duration-300"
+            id="quick-actions-grid">
+            <!-- Actions will be dynamically added -->
+        </div>
+        
+        <!-- Quick Actions Bar (Minimized View) - Visible by default -->
+        <div class="px-4 pb-3 quick-actions-bar" id="quick-actions-bar">
+            <!-- Mini actions will be added here -->
+        </div>
+    </div>
+    
+    <!-- Chat Messages Area -->
+    <div class="flex-1 overflow-y-auto bg-light p-4 scrollbar-green" id="chat-messages">
+        <!-- Welcome Message -->
+        <div class="flex gap-3 mb-4 animate-slide-in-left">
+            <div class="user-avatar">
                 <i class="fas fa-robot"></i>
             </div>
-            <div>
-                <h4 class="font-semibold">Whitebox Assistant</h4>
-                <p class="text-xs opacity-90 flex items-center">
-                    <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
-                    <span id="status-text">Online</span>
-                </p>
-            </div>
-        </div>
-        <div class="flex space-x-2">
-            <button class="w-8 h-8 rounded-full hover:bg-white hover:bg-opacity-10 flex items-center justify-center"
-                id="menu-toggle" title="Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full hover:bg-white hover:bg-opacity-10 flex items-center justify-center"
-                id="format-toggle" title="Formatting">
-                <i class="fas fa-text-height"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full hover:bg-white hover:bg-opacity-10 flex items-center justify-center"
-                id="fullscreen-button" title="Expand">
-                <i class="fas fa-expand"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full hover:bg-white hover:bg-opacity-10 flex items-center justify-center"
-                id="minimize-button" title="Minimize">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full hover:bg-white hover:bg-opacity-10 flex items-center justify-center"
-                id="chatbot-close" title="Close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Menu System -->
-    <div class="bg-whatsapp-menubg border-b border-gray-200 p-3 hidden" id="menu-container">
-        <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-whatsapp-green">Quick Actions</h4>
-            <button class="text-red-500 text-sm flex items-center" id="clear-chat">
-                <i class="fas fa-trash  mr-1"></i> Clear Chat
-            </button>
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-            <div class="bg-white rounded-lg p-2 text-center cursor-pointer border border-gray-200 hover:border-whatsapp-green transition-colors menu-option"
-                data-query="What services do you offer?">
-                <i class="fas fa-concierge-bell text-whatsapp-green mb-1"></i>
-                <p class="text-xs font-medium">Services</p>
-            </div>
-            <div class="bg-white rounded-lg p-2 text-center cursor-pointer border border-gray-200 hover:border-whatsapp-green transition-colors menu-option"
-                data-query="How do I submit a document?">
-                <i class="fas fa-file-upload text-whatsapp-green mb-1"></i>
-                <p class="text-xs font-medium">Documents</p>
-            </div>
-            <div class="bg-white rounded-lg p-2 text-center cursor-pointer border border-gray-200 hover:border-whatsapp-green transition-colors menu-option"
-                data-query="What are your operating hours?">
-                <i class="fas fa-clock text-whatsapp-green mb-1"></i>
-                <p class="text-xs font-medium">Hours</p>
-            </div>
-            <div class="bg-white rounded-lg p-2 text-center cursor-pointer border border-gray-200 hover:border-whatsapp-green transition-colors menu-option"
-                data-query="Contact support">
-                <i class="fas fa-headset text-whatsapp-green mb-1"></i>
-                <p class="text-xs font-medium">Support</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Formatting Toolbar -->
-    <div class="bg-whatsapp-menubg border-b border-gray-200 p-2 hidden flex-wrap" id="format-toolbar">
-        <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 format-button" data-tag="b"
-            title="Bold">
-            <i class="fas fa-bold"></i>
-        </button>
-        <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 format-button" data-tag="i"
-            title="Italic">
-            <i class="fas fa-italic"></i>
-        </button>
-        <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 format-button" data-tag="u"
-            title="Underline">
-            <i class="fas fa-underline"></i>
-        </button>
-        <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 format-button" data-tag="ol"
-            title="Numbered List">
-            <i class="fas fa-list-ol"></i>
-        </button>
-        <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 format-button" data-tag="ul"
-            title="Bulleted List">
-            <i class="fas fa-list-ul"></i>
-        </button>
-    </div>
-
-    <!-- Chat Messages -->
-    <div class="flex-1 overflow-y-auto p-4 chat-bg-pattern" id="chat-messages">
-        <div class="flex mb-3">
-            <div
-                class="w-8 h-8 rounded-full bg-whatsapp-green flex items-center justify-center text-white mr-2 flex-shrink-0">
-                <i class="fas fa-robot text-sm text-primary"></i>
-            </div>
-            <div class="bg-white rounded-lg p-3 shadow max-w-[70%]">
-                <div class="text-sm">
-                    <p>Hello! 👋 I'm your <strong>Whitebox Assistant</strong>.</p>
-                    <p class="mt-1">I can help with:</p>
-                    <ul class="list-disc pl-5 mt-1">
-                        <li>Whitebox Application</li>
-                        <li>Onboarding</li>
-                        <li>Entrepreneurship</li>
-                        <li>Coaching & more</li>
-                    </ul>
-                    <p class="mt-1">How can I assist you today?</p>
+            <div class="message-bubble bot">
+                <div class="text-dark">
+                    <p class="font-semibold text-accent">👋 Welcome to Whitebox Assistant</p>
+                    <p class="mt-2">I'm here to guide you through:</p>
+                    <div class="mt-2 space-y-1">
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Application Process & Requirements</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Document Submission Guidelines</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Entrepreneurship Support</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Coaching Program Details</span>
+                        </div>
+                    </div>
+                    <p class="mt-3">What would you like to know about?</p>
                 </div>
-                <div class="text-xs text-primary text-right mt-1"></div>
+                <div class="message-time">Just now</div>
             </div>
         </div>
     </div>
-
-    <!-- Chat Input -->
-    <div class="border-t border-gray-200 p-3 bg-gray-50">
-        <div class="flex items-center">
-            <div class="flex">
-                <button
-                    class="w-9 h-9 rounded-full flex items-center justify-center text-gray-500 hover:text-whatsapp-green"
-                    id="emoji-button">
-                    <i class="far fa-smile"></i>
-                </button>
-                <button
-                    class="w-9 h-9 rounded-full flex items-center justify-center text-gray-500 hover:text-whatsapp-green"
-                    id="attach-button">
-                    <i class="fas fa-paperclip"></i>
-                </button>
+    
+    <!-- Typing Indicator -->
+    <div class="px-4 py-2 bg-light hidden" id="typing-indicator">
+        <div class="flex items-center gap-3">
+            <div class="user-avatar">
+                <i class="fas fa-robot"></i>
             </div>
-            <textarea id="message-input"
-                class="flex-1 border rounded-full py-2 px-4 mx-2 resize-none focus:outline-none focus:ring-1 focus:ring-whatsapp-green"
-                placeholder="Type a message..." rows="1"></textarea>
-            <button class="bg-primary w-9 h-9 rounded-full flex items-center justify-center text-white"
-                id="send-button">
+            <div class="typing-container">
+                <div class="typing-dot w-2 h-2 bg-accent rounded-full"></div>
+                <div class="typing-dot w-2 h-2 bg-accent rounded-full" style="animation-delay: 0.2s"></div>
+                <div class="typing-dot w-2 h-2 bg-accent rounded-full" style="animation-delay: 0.4s"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input Area -->
+    <div class="p-4 border-t border-accent/10 bg-white">
+        <div class="flex items-center gap-2">
+            <!-- Emoji Button -->
+            <button class="action-button text-dark hover:text-accent"
+                id="emoji-button" title="Emoji">
+                <i class="far fa-smile text-lg"></i>
+            </button>
+            
+            <!-- Attachment Button -->
+            <button class="action-button text-dark hover:text-accent"
+                id="attachment-button" title="Attach File">
+                <i class="fas fa-paperclip text-lg"></i>
+            </button>
+            
+            <!-- Main Input -->
+            <div class="flex-1 relative">
+                <textarea id="message-input"
+                    class="w-full chat-input py-3 px-4 pr-12 resize-none focus:outline-none"
+                    placeholder="Type your message here..."
+                    rows="1"></textarea>
+                
+                <!-- Character Counter -->
+                <div class="absolute right-3 top-3 text-xs text-gray-500" id="char-counter">
+                    <span id="char-count">0</span>/500
+                </div>
+            </div>
+            
+            <!-- Send Button -->
+            <button class="w-10 h-10 rounded-full gradient-accent hover:opacity-90 flex items-center justify-center text-white shadow-md transition-all duration-300 hover:scale-105"
+                id="send-button" title="Send">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
+        
+        <!-- Hint Text -->
+        <div class="text-xs text-gray-500 mt-2 text-center">
+            Press <kbd class="px-1 py-0.5 bg-gray-100 rounded">Enter</kbd> to send • <kbd class="px-1 py-0.5 bg-gray-100 rounded">Shift + Enter</kbd> for new line
+        </div>
     </div>
-</div>
-
-<!-- Your chatbot container HTML remains the same -->
-<div class="fixed bottom-24 border border-2 border-light right-6 w-80 h-[500px] bg-white rounded-xl shadow-xl flex flex-col z-60 opacity-0 translate-y-5 pointer-events-none transition-all duration-300"
-    id="chatbot-container">
-    <!-- ... (keep your existing HTML) ... -->
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // DOM Elements
-        const chatbotIcon = document.getElementById('chatbot-icon');
-        const chatbotContainer = document.getElementById('chatbot-container');
-        const chatMessages = document.getElementById('chat-messages');
-        const messageInput = document.getElementById('message-input');
-        const sendButton = document.getElementById('send-button');
-        const closeButton = document.getElementById('chatbot-close');
-        const minimizeButton = document.getElementById('minimize-button');
-        const fullscreenButton = document.getElementById('fullscreen-button');
-        const menuToggle = document.getElementById('menu-toggle');
-        const formatToggle = document.getElementById('format-toggle');
-        const menuContainer = document.getElementById('menu-container');
-        const formatToolbar = document.getElementById('format-toolbar');
-        const clearChatButton = document.getElementById('clear-chat');
-        const statusText = document.getElementById('status-text');
-        const notificationBadge = document.getElementById('notification-badge');
-        const emojiButton = document.getElementById('emoji-button');
-        const menuOptions = document.querySelectorAll('.menu-option');
-        const formatButtons = document.querySelectorAll('.format-button');
+        // Configuration
+        const CONFIG = {
+            API_BASE_URL: 'https://whitebox.go.ke/api/chatbot',
+            MAX_MESSAGE_LENGTH: 500,
+            TYPING_SPEED: 30,
+            SESSION_DURATION: 30 * 60 * 1000,
+            QUICK_ACTIONS_COLLAPSED: true // Collapsed by default
+        };
 
-        // State variables
-        let isChatOpen = false;
-        let isFullscreen = false;
-        let isMenuVisible = false;
-        let isFormatVisible = false;
-        let sessionId = generateSessionId();
-        const API_BASE_URL = 'https://whitebox.go.ke/api/chatbot/';
+        // Quick Actions Data
+        const QUICK_ACTIONS = [
+            {
+                icon: 'fas fa-file-alt',
+                title: 'Services',
+                description: 'View all services',
+                query: 'What services does Whitebox offer?',
+                color: 'bg-blue-500/10',
+                iconColor: 'text-blue-600',
+                miniIcon: 'fas fa-file-alt'
+            },
+            {
+                icon: 'fas fa-upload',
+                title: 'Documents',
+                description: 'Submission guidelines',
+                query: 'How do I submit documents?',
+                color: 'bg-green-500/10',
+                iconColor: 'text-green-600',
+                miniIcon: 'fas fa-upload'
+            },
+            {
+                icon: 'fas fa-clock',
+                title: 'Hours',
+                description: 'Operating hours',
+                query: 'What are your operating hours?',
+                color: 'bg-purple-500/10',
+                iconColor: 'text-purple-600',
+                miniIcon: 'fas fa-clock'
+            },
+            {
+                icon: 'fas fa-graduation-cap',
+                title: 'Coaching',
+                description: 'Program details',
+                query: 'Tell me about coaching programs',
+                color: 'bg-orange-500/10',
+                iconColor: 'text-orange-600',
+                miniIcon: 'fas fa-graduation-cap'
+            }
+        ];
 
-        // Track if we're in the chat window
-        let isInChatWindow = false;
+        // Elements
+        const elements = {
+            chatbotIcon: document.getElementById('chatbot-icon'),
+            chatbotContainer: document.getElementById('chatbot-container'),
+            chatMessages: document.getElementById('chat-messages'),
+            messageInput: document.getElementById('message-input'),
+            sendButton: document.getElementById('send-button'),
+            maximizeButton: document.getElementById('maximize-button'),
+            menuButton: document.getElementById('menu-button'),
+            chatMenu: document.getElementById('chat-menu'),
+            emojiButton: document.getElementById('emoji-button'),
+            attachmentButton: document.getElementById('attachment-button'),
+            typingIndicator: document.getElementById('typing-indicator'),
+            typingText: document.getElementById('typing-text'),
+            statusText: document.getElementById('status-text'),
+            charCounter: document.getElementById('char-counter'),
+            charCount: document.getElementById('char-count'),
+            maximizeText: document.getElementById('maximize-text'),
+            quickActionsToggle: document.getElementById('quick-actions-toggle'),
+            quickActionsSection: document.getElementById('quick-actions-section'),
+            quickActionsGrid: document.getElementById('quick-actions-grid'),
+            quickActionsBar: document.getElementById('quick-actions-bar'),
+            quickActionsCount: document.getElementById('quick-actions-count'),
+            quickActionsToggleText: document.getElementById('quick-actions-toggle-text'),
+            backToTop: document.getElementById('back-to-top')
+        };
 
-        // Generate a unique session ID
-        function generateSessionId() {
-            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        // State
+        const state = {
+            isChatOpen: false,
+            isMaximized: false,
+            isMinimized: false,
+            isTyping: false,
+            sessionId: null,
+            currentMenu: null,
+            quickActionsMinimized: CONFIG.QUICK_ACTIONS_COLLAPSED, // Collapsed by default
+            quickActionsHidden: false
+        };
+
+        // Initialize
+        function init() {
+            setupSession();
+            setupQuickActions();
+            setupEventListeners();
+            setupMenu();
+            checkConnection();
+            setupAutoHideBackToTop();
+            
+            // Load quick actions state from localStorage (overrides default)
+            loadQuickActionsState();
         }
 
-        // Get current time for timestamps
+        // Load quick actions state
+        function loadQuickActionsState() {
+            const savedState = localStorage.getItem('wb_quick_actions_state');
+            if (savedState) {
+                const data = JSON.parse(savedState);
+                state.quickActionsMinimized = data.minimized !== undefined ? data.minimized : CONFIG.QUICK_ACTIONS_COLLAPSED;
+                state.quickActionsHidden = data.hidden || false;
+                
+                // Apply loaded state
+                if (state.quickActionsHidden) {
+                    hideQuickActions();
+                } else if (!state.quickActionsMinimized) {
+                    expandQuickActions();
+                }
+            } else {
+                // Apply default collapsed state
+                if (state.quickActionsMinimized) {
+                    collapseQuickActions();
+                }
+            }
+        }
+
+        // Save quick actions state
+        function saveQuickActionsState() {
+            localStorage.setItem('wb_quick_actions_state', JSON.stringify({
+                minimized: state.quickActionsMinimized,
+                hidden: state.quickActionsHidden
+            }));
+        }
+
+        // Collapse quick actions (apply collapsed state)
+        function collapseQuickActions() {
+            elements.quickActionsSection.classList.add('collapsed-by-default');
+            elements.quickActionsBar.classList.remove('hidden');
+            elements.quickActionsGrid.classList.add('hidden');
+            if (elements.quickActionsToggleText) {
+                elements.quickActionsToggleText.textContent = 'Show Quick Actions';
+            }
+            state.quickActionsMinimized = true;
+        }
+
+        // Expand quick actions (apply expanded state)
+        function expandQuickActions() {
+            elements.quickActionsSection.classList.remove('collapsed-by-default');
+            elements.quickActionsBar.classList.add('hidden');
+            elements.quickActionsGrid.classList.remove('hidden');
+            if (elements.quickActionsToggleText) {
+                elements.quickActionsToggleText.textContent = 'Hide Quick Actions';
+            }
+            state.quickActionsMinimized = false;
+        }
+
+        // Hide quick actions completely
+        function hideQuickActions() {
+            elements.quickActionsSection.classList.add('hidden');
+            if (elements.quickActionsToggleText) {
+                elements.quickActionsToggleText.textContent = 'Show Quick Actions';
+            }
+            state.quickActionsHidden = true;
+            state.quickActionsMinimized = true;
+        }
+
+        // Show quick actions
+        function showQuickActions() {
+            elements.quickActionsSection.classList.remove('hidden');
+            if (elements.quickActionsToggleText) {
+                elements.quickActionsToggleText.textContent = 'Hide Quick Actions';
+            }
+            state.quickActionsHidden = false;
+        }
+
+        // Setup session
+        function setupSession() {
+            const savedSession = localStorage.getItem('wb_chat_session_v4');
+            if (savedSession) {
+                const data = JSON.parse(savedSession);
+                if (Date.now() - data.created < CONFIG.SESSION_DURATION) {
+                    state.sessionId = data.id;
+                    return;
+                }
+            }
+            
+            state.sessionId = 'wb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('wb_chat_session_v4', JSON.stringify({
+                id: state.sessionId,
+                created: Date.now()
+            }));
+        }
+
+        // Setup quick actions
+        function setupQuickActions() {
+            // Setup full grid view
+            setupQuickActionsGrid();
+            
+            // Setup mini bar view
+            setupQuickActionsBar();
+            
+            // Update count
+            elements.quickActionsCount.textContent = QUICK_ACTIONS.length;
+        }
+
+        // Setup quick actions grid
+        function setupQuickActionsGrid() {
+            elements.quickActionsGrid.innerHTML = '';
+            
+            QUICK_ACTIONS.forEach((action, index) => {
+                const actionElement = createQuickActionCard(action, index);
+                elements.quickActionsGrid.appendChild(actionElement);
+            });
+        }
+
+        // Setup quick actions bar
+        function setupQuickActionsBar() {
+            elements.quickActionsBar.innerHTML = '';
+            
+            QUICK_ACTIONS.forEach(action => {
+                const miniAction = document.createElement('div');
+                miniAction.className = 'quick-action-mini';
+                miniAction.innerHTML = `
+                    <i class="${action.miniIcon} ${action.iconColor}"></i>
+                    <span>${action.title}</span>
+                `;
+                
+                miniAction.addEventListener('click', () => {
+                    sendQuickAction(action.query);
+                    highlightMiniAction(miniAction);
+                });
+                
+                elements.quickActionsBar.appendChild(miniAction);
+            });
+        }
+
+        // Create quick action card
+        function createQuickActionCard(action, index) {
+            const actionElement = document.createElement('div');
+            actionElement.className = 'quick-action-card';
+            actionElement.style.animationDelay = `${index * 0.1}s`;
+            actionElement.innerHTML = `
+                <div class="icon-wrapper ${action.color}">
+                    <i class="${action.icon} ${action.iconColor}"></i>
+                </div>
+                <div>
+                    <div class="font-medium text-dark text-sm">${action.title}</div>
+                    <div class="text-xs text-gray-500 mt-1">${action.description}</div>
+                </div>
+            `;
+            
+            actionElement.addEventListener('click', () => {
+                sendQuickAction(action.query);
+                highlightAction(actionElement);
+            });
+            
+            return actionElement;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Chat toggle
+            elements.chatbotIcon.addEventListener('click', toggleChat);
+
+            // Menu toggle
+            elements.menuButton.addEventListener('click', toggleMenu);
+            document.addEventListener('click', closeMenuOnClickOutside);
+
+            // Maximize button
+            elements.maximizeButton.addEventListener('click', toggleMaximize);
+
+            // Quick actions toggle
+            elements.quickActionsToggle.addEventListener('click', toggleQuickActionsView);
+
+            // Message input
+            elements.messageInput.addEventListener('input', handleInput);
+            elements.messageInput.addEventListener('keydown', handleKeyDown);
+            elements.sendButton.addEventListener('click', sendMessage);
+
+            // Attachment button (placeholder)
+            elements.attachmentButton.addEventListener('click', () => {
+                showNotification('📎 File attachment feature coming soon!', 'info');
+            });
+
+            // Emoji button (placeholder)
+            elements.emojiButton.addEventListener('click', () => {
+                showNotification('😊 Emoji picker coming soon!', 'info');
+            });
+
+            // Prevent chat container clicks from closing
+            elements.chatbotContainer.addEventListener('click', (e) => e.stopPropagation());
+        }
+
+        // Setup menu actions
+        function setupMenu() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const action = item.getAttribute('data-action');
+                    handleMenuAction(action);
+                    closeMenu();
+                });
+            });
+        }
+
+        // Handle menu actions
+        function handleMenuAction(action) {
+            switch(action) {
+                case 'new-chat':
+                    clearChat();
+                    showNotification('🔄 New conversation started', 'success');
+                    break;
+                    
+                case 'search':
+                    showNotification('🔍 Search functionality coming soon!', 'info');
+                    break;
+                    
+                case 'maximize':
+                    toggleMaximize();
+                    break;
+                    
+                case 'minimize':
+                    toggleMinimize();
+                    break;
+                    
+                case 'toggle-quick-actions':
+                    toggleQuickActionsVisibility();
+                    break;
+                    
+                case 'clear-chat':
+                    if (confirm('Clear all chat messages?')) {
+                        clearChat();
+                        showNotification('🗑️ Chat cleared', 'success');
+                    }
+                    break;
+                    
+                case 'close':
+                    toggleChat();
+                    break;
+            }
+        }
+
+        // Toggle quick actions view (collapsed/expanded)
+        function toggleQuickActionsView() {
+            if (state.quickActionsMinimized) {
+                expandQuickActions();
+                showNotification('📋 Quick actions expanded', 'info');
+            } else {
+                collapseQuickActions();
+                showNotification('📱 Quick actions collapsed', 'info');
+            }
+            
+            saveQuickActionsState();
+        }
+
+        // Toggle quick actions visibility (show/hide)
+        function toggleQuickActionsVisibility() {
+            if (state.quickActionsHidden) {
+                showQuickActions();
+                showNotification('👁️ Quick actions visible', 'info');
+            } else {
+                hideQuickActions();
+                showNotification('👁️ Quick actions hidden', 'info');
+            }
+            
+            saveQuickActionsState();
+        }
+
+        // Toggle chat visibility
+        function toggleChat() {
+            state.isChatOpen = !state.isChatOpen;
+            
+            if (state.isChatOpen) {
+                // Open chat
+                elements.chatbotContainer.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
+                elements.chatbotContainer.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                elements.messageInput.focus();
+                
+                // Reset to normal size if minimized
+                if (state.isMinimized) {
+                    toggleMinimize();
+                }
+                
+                showNotification('✅ Connected to Whitebox Assistant', 'success');
+            } else {
+                // Close chat
+                elements.chatbotContainer.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                elements.chatbotContainer.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none');
+                
+                // Close any open menus
+                closeMenu();
+            }
+        }
+
+        // Toggle maximize
+        function toggleMaximize() {
+            state.isMaximized = !state.isMaximized;
+            
+            if (state.isMaximized) {
+                elements.chatbotContainer.classList.remove('chat-normal');
+                elements.chatbotContainer.classList.add('chat-maximized');
+                elements.maximizeText.textContent = 'Restore Window';
+                elements.maximizeButton.innerHTML = '<i class="fas fa-compress text-sm"></i>';
+                showNotification('🔲 Chat maximized', 'info');
+            } else {
+                elements.chatbotContainer.classList.remove('chat-maximized');
+                elements.chatbotContainer.classList.add('chat-normal');
+                elements.maximizeText.textContent = 'Maximize Window';
+                elements.maximizeButton.innerHTML = '<i class="fas fa-expand text-sm"></i>';
+            }
+            
+            // Scroll to bottom after resize
+            setTimeout(scrollToBottom, 100);
+        }
+
+        // Toggle minimize
+        function toggleMinimize() {
+            state.isMinimized = !state.isMinimized;
+            
+            if (state.isMinimized) {
+                elements.chatbotContainer.classList.remove('chat-normal');
+                elements.chatbotContainer.classList.add('chat-minimized');
+                showNotification('📱 Chat minimized', 'info');
+            } else {
+                elements.chatbotContainer.classList.remove('chat-minimized');
+                elements.chatbotContainer.classList.add('chat-normal');
+            }
+        }
+
+        // Toggle menu
+        function toggleMenu() {
+            elements.chatMenu.classList.toggle('hidden');
+            state.currentMenu = state.currentMenu === 'main' ? null : 'main';
+        }
+
+        // Close menu
+        function closeMenu() {
+            elements.chatMenu.classList.add('hidden');
+            state.currentMenu = null;
+        }
+
+        // Close menu on click outside
+        function closeMenuOnClickOutside(e) {
+            if (!elements.menuButton.contains(e.target) && !elements.chatMenu.contains(e.target)) {
+                closeMenu();
+            }
+        }
+
+        // Handle input
+        function handleInput() {
+            const count = elements.messageInput.value.length;
+            elements.charCount.textContent = count;
+            
+            // Change color if near limit
+            if (count > CONFIG.MAX_MESSAGE_LENGTH * 0.9) {
+                elements.charCount.classList.add('text-danger');
+            } else {
+                elements.charCount.classList.remove('text-danger');
+            }
+            
+            // Auto-resize textarea
+            elements.messageInput.style.height = 'auto';
+            elements.messageInput.style.height = Math.min(elements.messageInput.scrollHeight, 120) + 'px';
+        }
+
+        // Handle key down
+        function handleKeyDown(e) {
+            // Enter to send (unless Shift is held)
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-accent' : 
+                           type === 'error' ? 'bg-danger' : 
+                           type === 'info' ? 'bg-dark' : 'bg-dark';
+            
+            notification.className = `fixed top-4 right-4 px-4 py-3 rounded-lg shadow-lg z-50 animate-slide-in-right ${bgColor} text-white flex items-center gap-2`;
+            notification.innerHTML = `
+                ${message}
+                <button class="ml-2 text-white/80 hover:text-white" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'translate-x-10');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Check connection
+        async function checkConnection() {
+            try {
+                const response = await fetch(`${CONFIG.API_BASE_URL}/health`);
+                if (response.ok) {
+                    elements.statusText.textContent = 'Online';
+                } else {
+                    throw new Error('API not healthy');
+                }
+            } catch (error) {
+                elements.statusText.textContent = 'Offline';
+                console.warn('Connection check failed:', error);
+            }
+        }
+
+        // Clear chat
+        function clearChat() {
+            while (elements.chatMessages.children.length > 1) {
+                elements.chatMessages.removeChild(elements.chatMessages.lastChild);
+            }
+            
+            // Add new welcome message
+            setTimeout(() => {
+                addMessage("Hello! How can I assist you today?", false);
+            }, 300);
+        }
+
+        // Add message to chat
+        function addMessage(content, isUser = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex gap-3 mb-4 ${isUser ? 'justify-end' : 'animate-slide-in-left'}`;
+            
+            if (!isUser) {
+                messageDiv.innerHTML = `
+                    <div class="user-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                `;
+            }
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = `message-bubble ${isUser ? 'user' : 'bot'}`;
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = isUser ? 'text-white' : 'text-dark';
+            textDiv.innerHTML = formatMessage(content);
+            messageContent.appendChild(textDiv);
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.style.color = isUser ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.5)';
+            timeDiv.textContent = getCurrentTime();
+            messageContent.appendChild(timeDiv);
+            
+            if (isUser) {
+                messageDiv.appendChild(messageContent);
+            } else {
+                const avatar = messageDiv.firstChild;
+                messageDiv.appendChild(messageContent);
+                messageDiv.insertBefore(avatar, messageContent);
+            }
+            
+            elements.chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Format message
+        function formatMessage(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Get current time
         function getCurrentTime() {
             const now = new Date();
             return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
 
-        // Toggle chat visibility
-        function toggleChat() {
-            isChatOpen = !isChatOpen;
-            isInChatWindow = isChatOpen; // Update tracking
-            if (isChatOpen) {
-                chatbotContainer.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
-                chatbotContainer.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                messageInput.focus();
-                notificationBadge.classList.add('hidden');
-
-                // On large screens, make sure hover is disabled when chat is open
-                if (window.innerWidth >= 768) {
-                    chatbotIcon.classList.remove('group');
-                }
-            } else {
-                chatbotContainer.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                chatbotContainer.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none');
-                hideMenu();
-                hideFormatToolbar();
-                isInChatWindow = false;
-
-                // On large screens, re-enable hover when chat is closed
-                if (window.innerWidth >= 768) {
-                    chatbotIcon.classList.add('group');
-                }
-            }
-        }
-
-        // Toggle fullscreen mode
-        function toggleFullscreen() {
-            isFullscreen = !isFullscreen;
-            if (isFullscreen) {
-                chatbotContainer.classList.add('w-[calc(100%-3rem)]', 'h-[calc(100%-6rem)]', 'bottom-6', 'right-6');
-                fullscreenButton.innerHTML = '<i class="fas fa-compress "></i>';
-                fullscreenButton.setAttribute('title', 'Restore');
-            } else {
-                chatbotContainer.classList.remove('w-[calc(100%-3rem)]', 'h-[calc(100%-6rem)]', 'bottom-6', 'left-6');
-                fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
-                fullscreenButton.setAttribute('title', 'Expand');
-            }
-        }
-
-        // Toggle menu visibility
-        function toggleMenu() {
-            isMenuVisible = !isMenuVisible;
-            if (isMenuVisible) {
-                menuContainer.classList.remove('hidden');
-                hideFormatToolbar();
-            } else {
-                menuContainer.classList.add('hidden');
-            }
-        }
-
-        // Hide menu
-        function hideMenu() {
-            isMenuVisible = false;
-            menuContainer.classList.add('hidden');
-        }
-
-        // Toggle format toolbar visibility
-        function toggleFormatToolbar() {
-            isFormatVisible = !isFormatVisible;
-            if (isFormatVisible) {
-                formatToolbar.classList.remove('hidden');
-                formatToolbar.classList.add('flex');
-                hideMenu();
-            } else {
-                formatToolbar.classList.add('hidden');
-                formatToolbar.classList.remove('flex');
-            }
-        }
-
-        // Hide format toolbar
-        function hideFormatToolbar() {
-            isFormatVisible = false;
-            formatToolbar.classList.add('hidden');
-            formatToolbar.classList.remove('flex');
-        }
-
-        // Clear chat history
-        function clearChat() {
-            // Keep only the first message (the welcome message)
-            while (chatMessages.children.length > 1) {
-                chatMessages.removeChild(chatMessages.lastChild);
-            }
-
-            // Generate a new session ID
-            sessionId = generateSessionId();
-
-            // Add a confirmation message
-            addMessage("Chat history cleared. How can I help you?", false);
-
-            // Hide menu
-            hideMenu();
-        }
-
-        // Check API health status
-        async function checkAPIHealth() {
-            try {
-                const response = await fetch(`${API_BASE_URL}/health`);
-                const data = await response.json();
-
-                if (data.status === 'healthy') {
-                    statusText.textContent = 'Online';
-                } else {
-                    statusText.textContent = 'Limited functionality';
-                }
-            } catch (error) {
-                console.error('Health check failed:', error);
-                statusText.textContent = 'Offline';
-            }
-        }
-
-        // Add message to chat
-        function addMessage(content, isUser = false, timestamp = null) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `flex mb-3 ${isUser ? 'justify-end' : ''}`;
-
-            if (!isUser) {
-                messageDiv.innerHTML = `
-                        <div class="w-8 h-8 rounded-full bg-whatsapp-green flex items-center justify-center text-white mr-2 flex-shrink-0">
-                            <i class="fas fa-robot text-sm text-primary"></i>
-                        </div>
-                    `;
-            }
-
-            const messageContent = document.createElement('div');
-            messageContent.className = `bg-${isUser ? 'whatsapp-sent' : 'white'} rounded-lg p-3 shadow max-w-[70%]`;
-
-            // Check if content needs formatting
-            const messageText = document.createElement('div');
-            messageText.className = 'text-sm';
-
-            if (content.includes('*') || content.includes('- ') || content.includes('1.')) {
-                messageText.innerHTML = formatText(content);
-            } else {
-                messageText.textContent = content;
-            }
-
-            messageContent.appendChild(messageText);
-
-            // Add timestamp
-            const timeDiv = document.createElement('div');
-            timeDiv.className = `text-xs text-gray-500 ${isUser ? 'text-right' : ''} mt-1`;
-            timeDiv.textContent = timestamp || getCurrentTime();
-            messageContent.appendChild(timeDiv);
-
-            if (isUser) {
-                messageDiv.appendChild(messageContent);
-            } else {
-                const avatarDiv = messageDiv.firstChild;
-                messageDiv.appendChild(messageContent);
-                messageDiv.insertBefore(avatarDiv, messageContent);
-            }
-
-            // For user messages, add after the typing indicator if present
-            const typingIndicator = document.querySelector('.typing-indicator');
-            if (typingIndicator && isUser) {
-                chatMessages.insertBefore(messageDiv, typingIndicator.parentNode);
-            } else {
-                chatMessages.appendChild(messageDiv);
-            }
-
-            scrollToBottom();
-        }
-
-        // Format text with markdown-like syntax
-        function formatText(text) {
-            // Replace *text* with <strong>text</strong>
-            text = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
-
-            // Replace _text_ with <em>text</em>
-            text = text.replace(/_(.*?)_/g, '<em>$1</em>');
-
-            // Replace numbered lists
-            text = text.replace(/^(\d+)\.\s+(.*)$/gm, '<li>$2</li>');
-            if (text.includes('<li>')) {
-                text = text.replace(/(<li>.*<\/li>)/s, '<ol class="list-decimal pl-5 mt-1">$1</ol>');
-            }
-
-            // Replace bullet points with dashes
-            text = text.replace(/^-\s+(.*)$/gm, '<li>$1</li>');
-            if (text.includes('<li>') && !text.includes('<ol')) {
-                text = text.replace(/(<li>.*<\/li>)/s, '<ul class="list-disc pl-5 mt-1">$1</ul>');
-            }
-
-            // Replace line breaks with paragraphs
-            text = text.replace(/\n\n/g, '</p><p class="mt-1">');
-            text = '<p>' + text + '</p>';
-            text = text.replace(/<p><\/p>/g, '');
-
-            return text;
-        }
-
-        // Apply formatting to selected text
-        function applyFormatting(tag) {
-            const start = messageInput.selectionStart;
-            const end = messageInput.selectionEnd;
-            const selectedText = messageInput.value.substring(start, end);
-
-            if (selectedText) {
-                let formattedText = '';
-
-                switch (tag) {
-                    case 'b':
-                        formattedText = `*${selectedText}*`;
-                        break;
-                    case 'i':
-                        formattedText = `_${selectedText}_`;
-                        break;
-                    case 'u':
-                        formattedText = `<u>${selectedText}</u>`;
-                        break;
-                    case 'ol':
-                        formattedText = `1. ${selectedText.replace(/\n/g, '\n1. ')}`;
-                        break;
-                    case 'ul':
-                        formattedText = `- ${selectedText.replace(/\n/g, '\n- ')}`;
-                        break;
-                    default:
-                        formattedText = selectedText;
-                }
-
-                messageInput.value = messageInput.value.substring(0, start) +
-                    formattedText +
-                    messageInput.value.substring(end);
-            } else {
-                // If no text is selected, insert tags at cursor position
-                let emptyTags = '';
-
-                switch (tag) {
-                    case 'b':
-                        emptyTags = '**';
-                        break;
-                    case 'i':
-                        emptyTags = '__';
-                        break;
-                    case 'u':
-                        emptyTags = '<u></u>';
-                        break;
-                    case 'ol':
-                        emptyTags = '1. ';
-                        break;
-                    case 'ul':
-                        emptyTags = '- ';
-                        break;
-                }
-
-                messageInput.value = messageInput.value.substring(0, start) +
-                    emptyTags +
-                    messageInput.value.substring(end);
-                messageInput.selectionStart = start + (tag === 'u' ? 4 : 1);
-                messageInput.selectionEnd = messageInput.selectionStart;
-            }
-
-            messageInput.focus();
-        }
-
         // Show typing indicator
         function showTypingIndicator() {
-            removeTypingIndicator(); // Remove any existing indicator
-
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'flex mb-3';
-
-            typingDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-whatsapp-green flex items-center justify-center text-white mr-2 flex-shrink-0">
-                        <i class="fas fa-robot text-sm text-primary"></i>
-                    </div>
-                    <div class="typing-indicator bg-white rounded-lg p-3 shadow flex items-center">
-                        <div class="typing-dot w-2 h-2 bg-gray-500 rounded-full mx-1"></div>
-                        <div class="typing-dot w-2 h-2 bg-gray-500 rounded-full mx-1"></div>
-                        <div class="typing-dot w-2 h-2 bg-gray-500 rounded-full mx-1"></div>
-                    </div>
-                `;
-
-            chatMessages.appendChild(typingDiv);
+            if (state.isTyping || state.isMinimized) return;
+            
+            state.isTyping = true;
+            elements.typingIndicator.classList.remove('hidden');
+            elements.typingText.classList.remove('hidden');
             scrollToBottom();
         }
 
-        // Remove typing indicator
-        function removeTypingIndicator() {
-            const typingIndicator = document.querySelector('.typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.parentNode.remove();
-            }
+        // Hide typing indicator
+        function hideTypingIndicator() {
+            state.isTyping = false;
+            elements.typingIndicator.classList.add('hidden');
+            elements.typingText.classList.add('hidden');
         }
 
-        // Scroll to bottom of chat
+        // Scroll to bottom
         function scrollToBottom() {
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            setTimeout(() => {
+                elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+            }, 100);
         }
 
-        // Animate message typing
-        function typeMessage(message, delay = 30) {
-            return new Promise(resolve => {
-                let i = 0;
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'flex mb-3';
-
-                messageDiv.innerHTML = `
-                        <div class="w-8 h-8 rounded-full bg-whatsapp-green flex items-center justify-center text-white mr-2 flex-shrink-0">
-                            <i class="fas fa-robot text-sm text-primary"></i>
-                        </div>
-                        <div class="bg-white rounded-lg p-3 shadow max-w-[70%]">
-                            <div class="text-sm message-content"></div>
-                        </div>
-                    `;
-
-                // Remove typing indicator first if it exists
-                removeTypingIndicator();
-                chatMessages.appendChild(messageDiv);
-
-                const messageContent = messageDiv.querySelector('.message-content');
-                const typeInterval = setInterval(() => {
-                    if (i < message.length) {
-                        messageContent.innerHTML = formatText(message.substring(0, i + 1));
-                        i++;
-                        scrollToBottom();
-                    } else {
-                        clearInterval(typeInterval);
-
-                        // Add timestamp
-                        const timeDiv = document.createElement('div');
-                        timeDiv.className = 'text-xs text-gray-500 mt-1';
-                        timeDiv.textContent = getCurrentTime();
-                        messageContent.parentNode.appendChild(timeDiv);
-
-                        resolve();
-                    }
-                }, delay);
-            });
+        // Send quick action
+        function sendQuickAction(query) {
+            elements.messageInput.value = query;
+            sendMessage();
         }
 
-        // Send message to API
-        async function sendMessage(message) {
+        // Highlight action card
+        function highlightAction(element) {
+            element.classList.add('ring-2', 'ring-accent');
+            setTimeout(() => {
+                element.classList.remove('ring-2', 'ring-accent');
+            }, 1000);
+        }
+
+        // Highlight mini action
+        function highlightMiniAction(element) {
+            element.classList.add('bg-accent-transparent', 'ring-1', 'ring-accent');
+            setTimeout(() => {
+                element.classList.remove('bg-accent-transparent', 'ring-1', 'ring-accent');
+            }, 1000);
+        }
+
+        // Send message
+        async function sendMessage() {
+            const message = elements.messageInput.value.trim();
+            
+            if (!message) {
+                elements.messageInput.focus();
+                return;
+            }
+            
+            if (message.length > CONFIG.MAX_MESSAGE_LENGTH) {
+                showNotification(`Message too long (max ${CONFIG.MAX_MESSAGE_LENGTH} characters)`, 'error');
+                return;
+            }
+            
+            // Add user message
+            addMessage(message, true);
+            
+            // Clear input
+            elements.messageInput.value = '';
+            elements.messageInput.style.height = 'auto';
+            elements.charCount.textContent = '0';
+            elements.charCount.classList.remove('text-danger');
+            
+            // Send to API
+            await sendToAPI(message);
+        }
+
+        // Send to API with typing animation
+        async function sendToAPI(message) {
             showTypingIndicator();
-
+            
             try {
-                const response = await fetch(`${API_BASE_URL}/chat`, {
+                const response = await fetch(`${CONFIG.API_BASE_URL}/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         question: message,
-                        session_id: sessionId
+                        session_id: state.sessionId
                     })
                 });
 
                 if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
                 const data = await response.json();
-
-                // Remove typing indicator
-                removeTypingIndicator();
-
-                // Type out the response with animation
-                await typeMessage(data.answer);
-
+                
+                // Simulate typing delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                hideTypingIndicator();
+                
+                if (data.answer) {
+                    // Type out the response
+                    await typeMessage(data.answer);
+                } else {
+                    addMessage("I received your message but didn't get a proper response. Please try again.", false);
+                }
             } catch (error) {
-                console.error('Error sending message:', error);
-                removeTypingIndicator();
-                await typeMessage("I'm having trouble connecting to the service. Please try again later.");
+                console.error('API Error:', error);
+                hideTypingIndicator();
+                
+                await typeMessage("I'm having trouble connecting right now. Please try again in a moment.");
+                
+                // Update status
+                elements.statusText.textContent = 'Offline';
             }
         }
 
-        // Handle send message with proper event prevention
-        function handleSendMessage(e) {
-            // Prevent any default behavior that might close the chat
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
+        // Type message with animation
+        async function typeMessage(message) {
+            hideTypingIndicator();
+            
+            // Create message container
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex gap-3 mb-4 animate-slide-in-left';
+            messageDiv.innerHTML = `
+                <div class="user-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-bubble bot">
+                    <div class="text-dark message-content"></div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            
+            elements.chatMessages.appendChild(messageDiv);
+            const contentDiv = messageDiv.querySelector('.message-content');
+            
+            // Type out message character by character
+            for (let i = 0; i < message.length; i++) {
+                contentDiv.innerHTML = formatMessage(message.substring(0, i + 1));
+                scrollToBottom();
+                await new Promise(resolve => setTimeout(resolve, CONFIG.TYPING_SPEED));
             }
-
-            const message = messageInput.value.trim();
-            if (message) {
-                addMessage(message, true);
-                messageInput.value = '';
-                messageInput.style.height = 'auto';
-                sendMessage(message);
-                hideFormatToolbar();
-            }
-
-            return false;
         }
 
-        // Event listeners with proper prevention
-        chatbotIcon.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleChat();
-        });
-
-        closeButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleChat();
-        });
-
-        minimizeButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleChat();
-        });
-
-        fullscreenButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleFullscreen();
-        });
-
-        menuToggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleMenu();
-        });
-
-        formatToggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleFormatToolbar();
-        });
-
-        clearChatButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            clearChat();
-        });
-
-        // Prevent send button from bubbling
-        sendButton.addEventListener('click', function (e) {
-            handleSendMessage(e);
-        });
-
-        // Prevent Enter key in textarea from bubbling
-        messageInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                e.stopPropagation();
-                handleSendMessage(e);
-            }
-        });
-
-        // Stop propagation for all clicks inside chat container
-        chatbotContainer.addEventListener('click', function (e) {
-            e.stopPropagation();
-        }, true); // Use capture phase
-
-        // Auto-resize textarea
-        messageInput.addEventListener('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-
-        // Menu option handlers
-        menuOptions.forEach(option => {
-            option.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const query = this.getAttribute('data-query');
-                addMessage(query, true);
-                sendMessage(query);
-                hideMenu();
+        // Setup auto-hide back to top button
+        function setupAutoHideBackToTop() {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    elements.backToTop.classList.remove('opacity-0', 'invisible');
+                } else {
+                    elements.backToTop.classList.add('opacity-0', 'invisible');
+                }
             });
-        });
-
-        // Format button handlers
-        formatButtons.forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const tag = this.getAttribute('data-tag');
-                applyFormatting(tag);
-            });
-        });
-
-        // Emoji button (placeholder functionality)
-        emojiButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            addMessage("😊 Emoji selection would appear here in a full implementation!", false);
-        });
-
-        // Focus events to manage hover state
-        messageInput.addEventListener('focus', function () {
-            isInChatWindow = true;
-            // Disable hover effects on large screens when typing in chat
-            if (window.innerWidth >= 768) {
-                chatbotIcon.classList.remove('group');
-            }
-        });
-
-        messageInput.addEventListener('blur', function () {
-            // Only re-enable hover if chat window is still open
-            if (isChatOpen && window.innerWidth >= 768) {
-                // Keep hover disabled while chat is open
-                chatbotIcon.classList.remove('group');
-            }
-        });
-
-        // Track window resize
-        window.addEventListener('resize', function () {
-            if (window.innerWidth < 768) {
-                // Always remove hover on small screens
-                chatbotIcon.classList.remove('group');
-            } else if (isChatOpen || isInChatWindow) {
-                // Keep hover disabled if chat is open on large screens
-                chatbotIcon.classList.remove('group');
-            } else {
-                // Re-enable hover on large screens when chat is closed
-                chatbotIcon.classList.add('group');
-            }
-        });
-
-        // Initial API health check
-        checkAPIHealth();
-
-        // Periodically check API health (every 60 seconds)
-        setInterval(checkAPIHealth, 60000);
-
-        // Initial hover state setup
-        if (window.innerWidth < 768) {
-            chatbotIcon.classList.remove('group');
         }
+
+        // Initialize
+        init();
+        
+        // Periodic connection check
+        setInterval(checkConnection, 60000);
     });
 </script>
