@@ -24,6 +24,7 @@
             transform: translateX(20px);
             opacity: 0;
         }
+
         to {
             transform: translateX(0);
             opacity: 1;
@@ -35,6 +36,7 @@
             transform: translateX(-20px);
             opacity: 0;
         }
+
         to {
             transform: translateX(0);
             opacity: 1;
@@ -42,19 +44,26 @@
     }
 
     @keyframes bounce {
-        0%, 100% {
+
+        0%,
+        100% {
             transform: translateY(0);
         }
+
         50% {
             transform: translateY(-5px);
         }
     }
 
     @keyframes typing {
-        0%, 60%, 100% {
+
+        0%,
+        60%,
+        100% {
             opacity: 0.4;
             transform: translateY(0);
         }
+
         30% {
             opacity: 1;
             transform: translateY(-2px);
@@ -62,17 +71,27 @@
     }
 
     @keyframes pulse-green {
-        0%, 100% {
+
+        0%,
+        100% {
             box-shadow: 0 0 0 0 rgba(0, 102, 0, 0.4);
         }
+
         50% {
             box-shadow: 0 0 0 10px rgba(0, 102, 0, 0);
         }
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Animation Classes */
@@ -101,20 +120,57 @@
     }
 
     /* Color Classes */
-    .bg-primary { background-color: var(--primary); }
-    .bg-accent { background-color: var(--accent); }
-    .bg-dark { background-color: var(--dark); }
-    .bg-danger { background-color: var(--danger); }
-    .bg-light { background-color: var(--light); }
-    .bg-accent-light { background-color: var(--accent-light); }
-    .bg-accent-dark { background-color: var(--accent-dark); }
-    .bg-accent-transparent { background-color: var(--accent-transparent); }
-    
-    .text-primary { color: var(--primary); }
-    .text-accent { color: var(--accent); }
-    .text-dark { color: var(--dark); }
-    .text-danger { color: var(--danger); }
-    .text-light { color: var(--light); }
+    .bg-primary {
+        background-color: var(--primary);
+    }
+
+    .bg-accent {
+        background-color: var(--accent);
+    }
+
+    .bg-dark {
+        background-color: var(--dark);
+    }
+
+    .bg-danger {
+        background-color: var(--danger);
+    }
+
+    .bg-light {
+        background-color: var(--light);
+    }
+
+    .bg-accent-light {
+        background-color: var(--accent-light);
+    }
+
+    .bg-accent-dark {
+        background-color: var(--accent-dark);
+    }
+
+    .bg-accent-transparent {
+        background-color: var(--accent-transparent);
+    }
+
+    .text-primary {
+        color: var(--primary);
+    }
+
+    .text-accent {
+        color: var(--accent);
+    }
+
+    .text-dark {
+        color: var(--dark);
+    }
+
+    .text-danger {
+        color: var(--danger);
+    }
+
+    .text-light {
+        color: var(--light);
+    }
 
     /* Gradient Classes */
     .gradient-accent {
@@ -472,25 +528,28 @@
 <!-- Green Themed Chatbot Icon -->
 <div class="fixed bottom-6 right-6 w-16 h-16 rounded-full flex items-center justify-center cursor-pointer z-50 transition-all duration-300 hover:scale-110 group animate-bounce"
     id="chatbot-icon">
-    
+
     <!-- Green Gradient Circle -->
     <div class="absolute inset-0 rounded-full gradient-accent animate-pulse-green"></div>
-    
+
     <!-- Inner White Circle -->
     <div class="absolute inset-2 rounded-full bg-white flex items-center justify-center">
         <i class="fas fa-comments text-2xl text-accent"></i>
     </div>
-    
+
     <!-- Green Glow Effect -->
-    <div class="absolute -inset-2 rounded-full bg-accent opacity-20 blur-sm group-hover:opacity-30 transition-opacity"></div>
-    
+    <div class="absolute -inset-2 rounded-full bg-accent opacity-20 blur-sm group-hover:opacity-30 transition-opacity">
+    </div>
+
     <!-- Notification Badge -->
-    <div class="absolute -top-1 -right-1 w-6 h-6 bg-danger rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+    <div
+        class="absolute -top-1 -right-1 w-6 h-6 bg-danger rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
         <i class="fas fa-bell"></i>
     </div>
-    
+
     <!-- Hover Tooltip -->
-    <div class="absolute -top-12 right-0 bg-dark text-white px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap animate-slide-in-right">
+    <div
+        class="absolute -top-12 right-0 bg-dark text-white px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap animate-slide-in-right">
         <div class="flex items-center gap-2">
             <div class="status-indicator status-online"></div>
             <span class="text-sm">Whitebox Assistant</span>
@@ -502,7 +561,7 @@
 <!-- Green Themed Chat Container -->
 <div class="fixed bottom-24 right-6 bg-white rounded-2xl shadow-2xl flex flex-col z-60 opacity-0 translate-y-5 pointer-events-none transition-all duration-300 overflow-hidden border border-accent/20 chat-normal"
     id="chatbot-container">
-    
+
     <!-- Header - Dark with Green Accent -->
     <div class="header-gradient p-4 flex items-center justify-between">
         <!-- Left Side: Contact Info -->
@@ -511,7 +570,7 @@
             <div class="user-avatar">
                 <i class="fas fa-robot text-lg"></i>
             </div>
-            
+
             <!-- Contact Details -->
             <div>
                 <h3 class="font-semibold text-white">Whitebox Assistant</h3>
@@ -522,22 +581,20 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Right Side: Action Buttons -->
         <div class="flex items-center gap-2">
             <!-- Maximize Button -->
-            <button class="action-button text-white hover:text-accent-light"
-                id="maximize-button" title="Maximize">
+            <button class="action-button text-white hover:text-accent-light" id="maximize-button" title="Maximize">
                 <i class="fas fa-expand text-sm"></i>
             </button>
-            
+
             <!-- Menu Button -->
             <div class="relative">
-                <button class="action-button text-white hover:text-accent-light"
-                    id="menu-button" title="Menu">
+                <button class="action-button text-white hover:text-accent-light" id="menu-button" title="Menu">
                     <i class="fas fa-ellipsis-v"></i>
                 </button>
-                
+
                 <!-- Floating Menu -->
                 <div class="floating-menu top-full right-0 mt-2 hidden" id="chat-menu">
                     <div class="menu-item" data-action="new-chat">
@@ -574,7 +631,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Quick Actions Section - Collapsed by Default -->
     <div class="quick-actions-section collapsed-by-default bg-accent-transparent border-b border-accent/10 transition-all duration-300"
         id="quick-actions-section">
@@ -590,19 +647,19 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Quick Actions Grid (Full View) - Hidden by default -->
         <div class="px-4 pb-3 quick-actions-grid grid grid-cols-2 gap-3 transition-all duration-300"
             id="quick-actions-grid">
             <!-- Actions will be dynamically added -->
         </div>
-        
+
         <!-- Quick Actions Bar (Minimized View) - Visible by default -->
         <div class="px-4 pb-3 quick-actions-bar" id="quick-actions-bar">
             <!-- Mini actions will be added here -->
         </div>
     </div>
-    
+
     <!-- Chat Messages Area -->
     <div class="flex-1 overflow-y-auto bg-light p-4 scrollbar-green" id="chat-messages">
         <!-- Welcome Message -->
@@ -638,7 +695,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Typing Indicator -->
     <div class="px-4 py-2 bg-light hidden" id="typing-indicator">
         <div class="flex items-center gap-3">
@@ -652,45 +709,43 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Input Area -->
     <div class="p-4 border-t border-accent/10 bg-white">
         <div class="flex items-center gap-2">
             <!-- Emoji Button -->
-            <button class="action-button text-dark hover:text-accent"
-                id="emoji-button" title="Emoji">
+            <button class="action-button text-dark hover:text-accent" id="emoji-button" title="Emoji">
                 <i class="far fa-smile text-lg"></i>
             </button>
-            
+
             <!-- Attachment Button -->
-            <button class="action-button text-dark hover:text-accent"
-                id="attachment-button" title="Attach File">
+            <button class="action-button text-dark hover:text-accent" id="attachment-button" title="Attach File">
                 <i class="fas fa-paperclip text-lg"></i>
             </button>
-            
+
             <!-- Main Input -->
             <div class="flex-1 relative">
-                <textarea id="message-input"
-                    class="w-full chat-input py-3 px-4 pr-12 resize-none focus:outline-none"
-                    placeholder="Type your message here..."
-                    rows="1"></textarea>
-                
+                <textarea id="message-input" class="w-full chat-input py-3 px-4 pr-12 resize-none focus:outline-none"
+                    placeholder="Type your message here..." rows="1"></textarea>
+
                 <!-- Character Counter -->
                 <div class="absolute right-3 top-3 text-xs text-gray-500" id="char-counter">
                     <span id="char-count">0</span>/500
                 </div>
             </div>
-            
+
             <!-- Send Button -->
-            <button class="w-10 h-10 rounded-full gradient-accent hover:opacity-90 flex items-center justify-center text-white shadow-md transition-all duration-300 hover:scale-105"
+            <button
+                class="w-10 h-10 rounded-full gradient-accent hover:opacity-90 flex items-center justify-center text-white shadow-md transition-all duration-300 hover:scale-105"
                 id="send-button" title="Send">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
-        
+
         <!-- Hint Text -->
         <div class="text-xs text-gray-500 mt-2 text-center">
-            Press <kbd class="px-1 py-0.5 bg-gray-100 rounded">Enter</kbd> to send • <kbd class="px-1 py-0.5 bg-gray-100 rounded">Shift + Enter</kbd> for new line
+            Press <kbd class="px-1 py-0.5 bg-gray-100 rounded">Enter</kbd> to send • <kbd
+                class="px-1 py-0.5 bg-gray-100 rounded">Shift + Enter</kbd> for new line
         </div>
     </div>
 </div>
@@ -727,13 +782,22 @@
                 miniIcon: 'fas fa-upload'
             },
             {
-                icon: 'fas fa-clock',
-                title: 'Hours',
-                description: 'Operating hours',
-                query: 'What are your operating hours?',
-                color: 'bg-purple-500/10',
-                iconColor: 'text-purple-600',
-                miniIcon: 'fas fa-clock'
+                icon: 'fas fa-phone',
+                title: 'Contact ICTA',
+                description: 'How to reach the ICTA office',
+                query: 'How can I contact the ICTA office?', 
+                color: 'bg-green-500/10',
+                iconColor: 'text-black-600',
+                miniIcon: 'fas fa-phone'
+            },
+            {
+                icon: 'fas fa-phone',
+                title: 'Contact Whitebox',
+                description: 'How to reach the whitebox',
+                query: 'How can I contact the whitebox?', 
+                color: 'bg-red-500/10',
+                iconColor: 'text-red-600',
+                miniIcon: 'fas fa-phone'
             },
             {
                 icon: 'fas fa-graduation-cap',
@@ -793,7 +857,7 @@
             setupMenu();
             checkConnection();
             setupAutoHideBackToTop();
-            
+
             // Load quick actions state from localStorage (overrides default)
             loadQuickActionsState();
         }
@@ -805,7 +869,7 @@
                 const data = JSON.parse(savedState);
                 state.quickActionsMinimized = data.minimized !== undefined ? data.minimized : CONFIG.QUICK_ACTIONS_COLLAPSED;
                 state.quickActionsHidden = data.hidden || false;
-                
+
                 // Apply loaded state
                 if (state.quickActionsHidden) {
                     hideQuickActions();
@@ -879,7 +943,7 @@
                     return;
                 }
             }
-            
+
             state.sessionId = 'wb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('wb_chat_session_v4', JSON.stringify({
                 id: state.sessionId,
@@ -891,10 +955,10 @@
         function setupQuickActions() {
             // Setup full grid view
             setupQuickActionsGrid();
-            
+
             // Setup mini bar view
             setupQuickActionsBar();
-            
+
             // Update count
             elements.quickActionsCount.textContent = QUICK_ACTIONS.length;
         }
@@ -902,7 +966,7 @@
         // Setup quick actions grid
         function setupQuickActionsGrid() {
             elements.quickActionsGrid.innerHTML = '';
-            
+
             QUICK_ACTIONS.forEach((action, index) => {
                 const actionElement = createQuickActionCard(action, index);
                 elements.quickActionsGrid.appendChild(actionElement);
@@ -912,7 +976,7 @@
         // Setup quick actions bar
         function setupQuickActionsBar() {
             elements.quickActionsBar.innerHTML = '';
-            
+
             QUICK_ACTIONS.forEach(action => {
                 const miniAction = document.createElement('div');
                 miniAction.className = 'quick-action-mini';
@@ -920,12 +984,12 @@
                     <i class="${action.miniIcon} ${action.iconColor}"></i>
                     <span>${action.title}</span>
                 `;
-                
+
                 miniAction.addEventListener('click', () => {
                     sendQuickAction(action.query);
                     highlightMiniAction(miniAction);
                 });
-                
+
                 elements.quickActionsBar.appendChild(miniAction);
             });
         }
@@ -944,12 +1008,12 @@
                     <div class="text-xs text-gray-500 mt-1">${action.description}</div>
                 </div>
             `;
-            
+
             actionElement.addEventListener('click', () => {
                 sendQuickAction(action.query);
                 highlightAction(actionElement);
             });
-            
+
             return actionElement;
         }
 
@@ -1001,35 +1065,35 @@
 
         // Handle menu actions
         function handleMenuAction(action) {
-            switch(action) {
+            switch (action) {
                 case 'new-chat':
                     clearChat();
                     showNotification('🔄 New conversation started', 'success');
                     break;
-                    
+
                 case 'search':
                     showNotification('🔍 Search functionality coming soon!', 'info');
                     break;
-                    
+
                 case 'maximize':
                     toggleMaximize();
                     break;
-                    
+
                 case 'minimize':
                     toggleMinimize();
                     break;
-                    
+
                 case 'toggle-quick-actions':
                     toggleQuickActionsVisibility();
                     break;
-                    
+
                 case 'clear-chat':
                     if (confirm('Clear all chat messages?')) {
                         clearChat();
                         showNotification('🗑️ Chat cleared', 'success');
                     }
                     break;
-                    
+
                 case 'close':
                     toggleChat();
                     break;
@@ -1045,7 +1109,7 @@
                 collapseQuickActions();
                 showNotification('📱 Quick actions collapsed', 'info');
             }
-            
+
             saveQuickActionsState();
         }
 
@@ -1058,31 +1122,31 @@
                 hideQuickActions();
                 showNotification('👁️ Quick actions hidden', 'info');
             }
-            
+
             saveQuickActionsState();
         }
 
         // Toggle chat visibility
         function toggleChat() {
             state.isChatOpen = !state.isChatOpen;
-            
+
             if (state.isChatOpen) {
                 // Open chat
                 elements.chatbotContainer.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
                 elements.chatbotContainer.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
                 elements.messageInput.focus();
-                
+
                 // Reset to normal size if minimized
                 if (state.isMinimized) {
                     toggleMinimize();
                 }
-                
+
                 showNotification('✅ Connected to Whitebox Assistant', 'success');
             } else {
                 // Close chat
                 elements.chatbotContainer.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
                 elements.chatbotContainer.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none');
-                
+
                 // Close any open menus
                 closeMenu();
             }
@@ -1091,7 +1155,7 @@
         // Toggle maximize
         function toggleMaximize() {
             state.isMaximized = !state.isMaximized;
-            
+
             if (state.isMaximized) {
                 elements.chatbotContainer.classList.remove('chat-normal');
                 elements.chatbotContainer.classList.add('chat-maximized');
@@ -1104,7 +1168,7 @@
                 elements.maximizeText.textContent = 'Maximize Window';
                 elements.maximizeButton.innerHTML = '<i class="fas fa-expand text-sm"></i>';
             }
-            
+
             // Scroll to bottom after resize
             setTimeout(scrollToBottom, 100);
         }
@@ -1112,7 +1176,7 @@
         // Toggle minimize
         function toggleMinimize() {
             state.isMinimized = !state.isMinimized;
-            
+
             if (state.isMinimized) {
                 elements.chatbotContainer.classList.remove('chat-normal');
                 elements.chatbotContainer.classList.add('chat-minimized');
@@ -1146,14 +1210,14 @@
         function handleInput() {
             const count = elements.messageInput.value.length;
             elements.charCount.textContent = count;
-            
+
             // Change color if near limit
             if (count > CONFIG.MAX_MESSAGE_LENGTH * 0.9) {
                 elements.charCount.classList.add('text-danger');
             } else {
                 elements.charCount.classList.remove('text-danger');
             }
-            
+
             // Auto-resize textarea
             elements.messageInput.style.height = 'auto';
             elements.messageInput.style.height = Math.min(elements.messageInput.scrollHeight, 120) + 'px';
@@ -1171,10 +1235,10 @@
         // Show notification
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
-            const bgColor = type === 'success' ? 'bg-accent' : 
-                           type === 'error' ? 'bg-danger' : 
-                           type === 'info' ? 'bg-dark' : 'bg-dark';
-            
+            const bgColor = type === 'success' ? 'bg-accent' :
+                type === 'error' ? 'bg-danger' :
+                    type === 'info' ? 'bg-dark' : 'bg-dark';
+
             notification.className = `fixed top-4 right-4 px-4 py-3 rounded-lg shadow-lg z-50 animate-slide-in-right ${bgColor} text-white flex items-center gap-2`;
             notification.innerHTML = `
                 ${message}
@@ -1182,9 +1246,9 @@
                     <i class="fas fa-times"></i>
                 </button>
             `;
-            
+
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.classList.add('opacity-0', 'translate-x-10');
                 setTimeout(() => notification.remove(), 300);
@@ -1211,7 +1275,7 @@
             while (elements.chatMessages.children.length > 1) {
                 elements.chatMessages.removeChild(elements.chatMessages.lastChild);
             }
-            
+
             // Add new welcome message
             setTimeout(() => {
                 addMessage("Hello! How can I assist you today?", false);
@@ -1222,7 +1286,7 @@
         function addMessage(content, isUser = true) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `flex gap-3 mb-4 ${isUser ? 'justify-end' : 'animate-slide-in-left'}`;
-            
+
             if (!isUser) {
                 messageDiv.innerHTML = `
                     <div class="user-avatar">
@@ -1230,21 +1294,21 @@
                     </div>
                 `;
             }
-            
+
             const messageContent = document.createElement('div');
             messageContent.className = `message-bubble ${isUser ? 'user' : 'bot'}`;
-            
+
             const textDiv = document.createElement('div');
             textDiv.className = isUser ? 'text-white' : 'text-dark';
             textDiv.innerHTML = formatMessage(content);
             messageContent.appendChild(textDiv);
-            
+
             const timeDiv = document.createElement('div');
             timeDiv.className = 'message-time';
             timeDiv.style.color = isUser ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.5)';
             timeDiv.textContent = getCurrentTime();
             messageContent.appendChild(timeDiv);
-            
+
             if (isUser) {
                 messageDiv.appendChild(messageContent);
             } else {
@@ -1252,7 +1316,7 @@
                 messageDiv.appendChild(messageContent);
                 messageDiv.insertBefore(avatar, messageContent);
             }
-            
+
             elements.chatMessages.appendChild(messageDiv);
             scrollToBottom();
         }
@@ -1274,7 +1338,7 @@
         // Show typing indicator
         function showTypingIndicator() {
             if (state.isTyping || state.isMinimized) return;
-            
+
             state.isTyping = true;
             elements.typingIndicator.classList.remove('hidden');
             elements.typingText.classList.remove('hidden');
@@ -1320,26 +1384,26 @@
         // Send message
         async function sendMessage() {
             const message = elements.messageInput.value.trim();
-            
+
             if (!message) {
                 elements.messageInput.focus();
                 return;
             }
-            
+
             if (message.length > CONFIG.MAX_MESSAGE_LENGTH) {
                 showNotification(`Message too long (max ${CONFIG.MAX_MESSAGE_LENGTH} characters)`, 'error');
                 return;
             }
-            
+
             // Add user message
             addMessage(message, true);
-            
+
             // Clear input
             elements.messageInput.value = '';
             elements.messageInput.style.height = 'auto';
             elements.charCount.textContent = '0';
             elements.charCount.classList.remove('text-danger');
-            
+
             // Send to API
             await sendToAPI(message);
         }
@@ -1347,7 +1411,7 @@
         // Send to API with typing animation
         async function sendToAPI(message) {
             showTypingIndicator();
-            
+
             try {
                 const response = await fetch(`${CONFIG.API_BASE_URL}/chat`, {
                     method: 'POST',
@@ -1365,11 +1429,11 @@
                 }
 
                 const data = await response.json();
-                
+
                 // Simulate typing delay
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 hideTypingIndicator();
-                
+
                 if (data.answer) {
                     // Type out the response
                     await typeMessage(data.answer);
@@ -1379,9 +1443,9 @@
             } catch (error) {
                 console.error('API Error:', error);
                 hideTypingIndicator();
-                
+
                 await typeMessage("I'm having trouble connecting right now. Please try again in a moment.");
-                
+
                 // Update status
                 elements.statusText.textContent = 'Offline';
             }
@@ -1390,7 +1454,7 @@
         // Type message with animation
         async function typeMessage(message) {
             hideTypingIndicator();
-            
+
             // Create message container
             const messageDiv = document.createElement('div');
             messageDiv.className = 'flex gap-3 mb-4 animate-slide-in-left';
@@ -1403,10 +1467,10 @@
                     <div class="message-time">${getCurrentTime()}</div>
                 </div>
             `;
-            
+
             elements.chatMessages.appendChild(messageDiv);
             const contentDiv = messageDiv.querySelector('.message-content');
-            
+
             // Type out message character by character
             for (let i = 0; i < message.length; i++) {
                 contentDiv.innerHTML = formatMessage(message.substring(0, i + 1));
@@ -1428,7 +1492,7 @@
 
         // Initialize
         init();
-        
+
         // Periodic connection check
         setInterval(checkConnection, 60000);
     });
