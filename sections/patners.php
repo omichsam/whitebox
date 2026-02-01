@@ -1,3 +1,73 @@
+<style>
+    <style>#innovationsCarousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+    }
+
+    .innovation-card {
+        flex: 0 0 auto;
+        margin-right: 2rem;
+        width: calc(100% - 1rem);
+    }
+
+    @media (min-width: 768px) {
+        .innovation-card {
+            width: calc(50% - 1rem);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .innovation-card {
+            width: calc(33.333% - 1rem);
+        }
+    }
+
+    /* Animation for cards */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-on-scroll {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Stagger animation for cards */
+    .innovation-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .innovation-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .innovation-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .innovation-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .innovation-card:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .innovation-card:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+</style>
+</style>
+
+
 <section id="partners" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-accent mb-4">Our
@@ -8,15 +78,18 @@
 
         <div class="flex justify-center mb-12">
             <div class="inline-flex rounded-lg border border-gray-300 overflow-hidden divide-x divide-gray-300">
-                <button class="tab-btn px-6 py-2 text-sm bg-danger text-white font-medium border-r border-gray-300 hover:bg-accent hover:text-white"
+                <button
+                    class="tab-btn px-6 py-2 text-sm bg-danger text-white font-medium border-r border-gray-300 hover:bg-accent hover:text-white"
                     data-tab="capacity">
                     Capacity Development
                 </button>
-                <button class="tab-btn px-6 text-sm py-2 bg-white text-gray-700 font-medium hover:bg-accent hover:text-white"
+                <button
+                    class="tab-btn px-6 text-sm py-2 bg-white text-gray-700 font-medium hover:bg-accent hover:text-white"
                     data-tab="technical">
                     Technical Advice
                 </button>
-                <button class="tab-btn px-6 text-sm py-2 bg-white text-gray-700 font-medium hover:bg-accent hover:text-white"
+                <button
+                    class="tab-btn px-6 text-sm py-2 bg-white text-gray-700 font-medium hover:bg-accent hover:text-white"
                     data-tab="facility">
                     Facility/Infrastructure
                 </button>
