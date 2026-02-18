@@ -184,11 +184,11 @@
                 <li><a href="contact.php"
                         class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base">CONTACT</a>
                 </li>
-                <li><a href="#e-learning"
+                <li><a href="#e-learning1"
                         class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base"
                         onclick="openModal('redirectModal')">E-LEARNING</a>
                 </li>
-                <!-- <button onclick="openModal('confirmModal')"
+                <!-- <buttonS onclick="openModal('confirmModal')"
   class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition">
   Open Confirmation
 </button> -->
