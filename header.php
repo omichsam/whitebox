@@ -124,9 +124,9 @@
                             data-size="18" data-loop="true" data-c="#757b87" data-hc="#418BCA" id="livicon-2"
                             style="width: 18px; height: 18px;"></i></a>
                 </li>
-                <li>
-                    <a class="menu_dtz" id="e_learningp" href="#loginmodal" data-toggle="modal">E-learning</a>
-
+                <li><a href="#e-learning"
+                    class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base"
+                    onclick="openModal('redirectModal')">E-LEARNING</a>
                 </li>
                 <!--  -->
                 <a class="navbar-brand "><img src="Huduma_WhiteBox/moict.png" alt="logo" class="logo_position"> </a>
