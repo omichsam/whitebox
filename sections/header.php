@@ -184,11 +184,11 @@
                 <li><a href="contact.php"
                         class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base">CONTACT</a>
                 </li>
-                <li><a href="#e-learning"
+                <li><a href="#e-learning1"
                         class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base"
                         onclick="openModal('redirectModal')">E-LEARNING</a>
                 </li>
-                <!-- <button onclick="openModal('confirmModal')"
+                <!-- <buttonS onclick="openModal('confirmModal')"
   class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition">
   Open Confirmation
 </button> -->
@@ -259,8 +259,13 @@
                         class="block hover:text-accent transition duration-300 font-bold py-2">PARTNERS</a></li>
                 <li><a href="contact.php"
                         class="block hover:text-accent transition duration-300 font-bold py-2">CONTACT</a></li>
-                <li><a href="#e-learning"
-                        class="block hover:text-accent transition duration-300 font-bold py-2">E-LEARNING</a></li>
+                <!-- <li><a href="#e-learning"
+                        class="block hover:text-accent transition duration-300 font-bold py-2">E-LEARNING</a></li> -->
+
+                        <li><a href="#e-learning"
+                        class="text-primary hover:text-accent transition duration-300 font-bold text-sm xl:text-base"
+                        onclick="openModal('redirectModal')">E-LEARNING</a>
+                </li>
                 <li class="pt-4">
                     <a href="index1.php" ooonclick="openModal('authModal', 'loginForm')"
                         class="inline-block px-6 py-3 bg-gradient-to-r from-dark to-danger text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:from-primary/90 hover:to-secondary/90 font-medium">
