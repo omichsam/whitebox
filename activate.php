@@ -6,6 +6,12 @@ include("connect.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Check if JSON extension is loaded
+if (!extension_loaded('json')) {
+    die('JSON extension is not loaded. Please enable it in php.ini');
+}
+
+
 // Enhanced debug logging
 function debug_log($message, $data = null)
 {
