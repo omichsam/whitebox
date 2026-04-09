@@ -123,7 +123,130 @@
         overflow-y: auto;
     }
 </style>
+<!-- Intellectual Property Modal -->
+<div id="ipModal" class="fixed inset-0 z-[10000] hidden" aria-hidden="true">
+    <!-- Backdrop -->
+    <div id="ipBackdrop" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-150"></div>
 
+    <!-- Dialog wrapper for centering -->
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <!-- Dialog -->
+        <div id="ipDialog" role="dialog" aria-modal="true" aria-labelledby="ipModalTitle"
+            class="w-[95vw] max-w-6xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-150">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg grid place-items-center bg-secondary/10 text-secondary">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h2 id="ipModalTitle" class="text-xl md:text-2xl font-bold text-accent">
+                        Protect Your Intellectual Property
+                    </h2>
+                </div>
+                <button id="ipCloseBtn"
+                    class="p-2 rounded-lg text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+                    aria-label="Close modal">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Main content -->
+                <div class="md:col-span-2 overflow-y-auto max-h-[calc(90vh-4rem)] px-6 py-5">
+                    <!-- FAQ as accordion -->
+                    <div class="space-y-4" id="ipAccordion">
+                        <!-- Item 1 -->
+                        <details class="group border rounded-xl p-4 open:shadow-sm transition-all">
+                            <summary class="flex items-center justify-between cursor-pointer list-none">
+                                <span class="font-semibold text-primary">1. Do I need to have intellectual property
+                                    protection?</span>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="mt-3 text-gray-700 text-sm leading-relaxed">
+                                Yes. It is recommended that you apply for the protection of your intellectual
+                                property before you submit the same to <b>Whitebox</b>. It is important to safeguard
+                                your intellectual property rights to secure your creativity and inventiveness and
+                                prevent
+                                the information contained in your submission from being appropriated by a third
+                                party.
+                            </div>
+                        </details>
+
+                        <!-- Item 2 -->
+                        <details class="group border rounded-xl p-4 open:shadow-sm transition-all">
+                            <summary class="flex items-center justify-between cursor-pointer list-none">
+                                <span class="font-semibold text-primary">2. When should I protect my intellectual
+                                    property?</span>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="mt-3 text-gray-700 text-sm leading-relaxed">
+                                You should take steps to protect your intellectual property at earliest possible
+                                juncture. It is recommended that you should not disclose any information regarding
+                                your intellectual property if you have not registered it or applied for
+                                registration. Disclosing such information before registration may lead to the
+                                appropriation of the information by a third party and hinder your ability to
+                                subsequently file for registration.
+                            </div>
+                        </details>
+
+                        <!-- Item 3 -->
+                        <details class="group border rounded-xl p-4 open:shadow-sm transition-all">
+                            <summary class="flex items-center justify-between cursor-pointer list-none">
+                                <span class="font-semibold text-primary">3. What forms of protection are
+                                    available?</span>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="mt-3 text-gray-700 text-sm leading-relaxed">
+                                Intellectual property may be protected using <strong>Patents</strong>,
+                                <strong>Trademarks</strong>, and
+                                <strong>Copyright</strong>. Registration is through the relevant government agency.
+                                Ownership can be by a natural person or a registered legal entity.
+                            </div>
+                        </details>
+
+                        <!-- Item 4 -->
+                        <details class="group border rounded-xl p-4 open:shadow-sm transition-all">
+                            <summary class="flex items-center justify-between cursor-pointer list-none">
+                                <span class="font-semibold text-primary">4. What are the benefits of
+                                    protection?</span>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="mt-3 text-gray-700 text-sm leading-relaxed">
+                                Intellectual property(IP) is a business asset and therefore securing it is essential
+                                to your business and brand. Secured intellectual property rights exclude third
+                                parties from appropriating your rights thus adding value to your business and
+                                giving you a competitive edge.
+                                <ul class="list-disc list-inside mt-3 space-y-1">
+                                    <li><strong>Patents</strong> afford protection to inventions in the technological or
+                                        industrial sector. The Kenya Industrial Property Institute undertakes the
+                                        registration of patents. The requirement for the registration of a patent can be
+                                        found <a href="https://www.kipi.go.ke/index.php/patents" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-600 underline hover:text-blue-800">here</a>.</li>
+                                    <li><strong>Copyright</strong> affords protection to artistic works of musical,
+                                        audiovisual, literary, and artistic nature. To acquire copyright, the Copyright
+                                        Act does not require registration. However, registration is recommended to claim
+                                        exclusive rights. Registration of copyright is done by the Kenya Copyright
+                                        Board. The process of registering copyright can be found <a
+                                            href="https://nrr.copyright.go.ke/" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-600 underline hover:text-blue-800">here</a>.</li>
+                                    <li><strong>Trademarks</strong> afford protection to brand names, marks, signs, and
+                                        logos associated with certain goods and services. Registration is handled by the
+                                        Kenya Industrial Property Institute. The requirements for registration can be
+                                        found <a href="https://www.kipi.go.ke/trade-marks" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-600 underline hover:text-blue-800">here</a>.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Terms and Conditions Modal -->
 <div id="termsModal" class="fixed inset-0 z-[10001] hidden" aria-hidden="true">
     <!-- Backdrop -->

@@ -27,9 +27,9 @@
                                 class="bg-danger px-8 py-2 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition duration-300">
                                 Get Started
                             </a>
-                            <a href="#services" onclick="openIPModal()"
+                            <a href="#services" 
                                 class="bg-white text-primary px-8 py-2 rounded-lg text-lg font-semibold hover:bg-gray-100 transition duration-300">
-                                Protect Your IP
+                               Our Services
                             </a>
 
 
@@ -63,7 +63,7 @@
                                 class="bg-danger px-8 py-2 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition duration-300">
                                 View Innovations
                             </a>
-                            <a href="#partners" onclick="openIPModal()"
+                            <a href="#partners"
                                 class="bg-white text-primary px-8 py-2 rounded-lg text-lg font-semibold hover:bg-gray-100 transition duration-300">
                                 Our Partners
                             </a>
@@ -99,8 +99,9 @@
                                 class="bg-danger px-6 py-2 sm:px-8 rounded-lg  sm:py-2 text-base sm:text-lg font-semibold hover:bg-opacity-90 transition duration-300">
                                 Get Started
                             </a>
-                            <a  onclick="openIPModal()"
-                                class="bg-white text-primary px-6 py-2 rounded-lg  sm:px-8 sm:py-2 text-base sm:text-lg font-semibold hover:bg-gray-100 transition duration-300">
+                            <a href="javascript:void(0)" onclick="openIPModal()" role="button" tabindex="0"
+                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { openIPModal(); event.preventDefault(); }"
+                                class="inline-block bg-white text-primary px-6 py-2 rounded-lg sm:px-8 sm:py-2 text-base sm:text-lg font-semibold hover:bg-gray-100 transition duration-300 cursor-pointer">
                                 Protect Your IP
                             </a>
                         </div>
@@ -134,3 +135,6 @@
         </a>
     </div>
 </section>
+
+
+<!-- <button class="demo-button" onclick="openIPModal()">Open IP Modal</button> -->

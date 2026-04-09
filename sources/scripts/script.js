@@ -304,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // <!-- Patent Modal -->
 // <script>
 // Simple focus trap
+// Modal management
 let ipPreviouslyFocused = null;
 
 function openIPModal() {
@@ -312,10 +313,18 @@ function openIPModal() {
     const dialog = document.getElementById('ipDialog');
     const closeBtn = document.getElementById('ipCloseBtn');
 
+    if (!modal || !backdrop || !dialog) return;
+
     ipPreviouslyFocused = document.activeElement;
 
+    // Remove hidden class
     modal.classList.remove('hidden');
-    // animate in
+    modal.setAttribute('aria-hidden', 'false');
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+
+    // Animate in
     requestAnimationFrame(() => {
         backdrop.classList.remove('opacity-0');
         backdrop.classList.add('opacity-100');
@@ -323,14 +332,13 @@ function openIPModal() {
         dialog.classList.add('opacity-100', 'scale-100');
     });
 
-    // focus first focusable
-    setTimeout(() => closeBtn.focus(), 50);
+    // Focus first focusable element
+    setTimeout(() => {
+        if (closeBtn) closeBtn.focus();
+    }, 50);
 
-    // ESC to close
+    // Add event listeners
     document.addEventListener('keydown', ipEscHandler);
-    // backdrop click to close
-    backdrop.addEventListener('click', closeIPModal);
-    // trap focus
     document.addEventListener('focus', ipFocusTrap, true);
 }
 
@@ -339,33 +347,47 @@ function closeIPModal() {
     const backdrop = document.getElementById('ipBackdrop');
     const dialog = document.getElementById('ipDialog');
 
-    // animate out
+    if (!modal || !backdrop || !dialog) return;
+
+    // Animate out
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
     dialog.classList.remove('opacity-100', 'scale-100');
     dialog.classList.add('opacity-0', 'scale-95');
 
-    // wait for transition then hide
+    // Wait for transition then hide
     setTimeout(() => {
         modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+
+        // Restore body scroll
+        document.body.style.overflow = '';
+
+        // Remove event listeners
         document.removeEventListener('keydown', ipEscHandler);
         document.removeEventListener('focus', ipFocusTrap, true);
-        document.getElementById('ipBackdrop').removeEventListener('click', closeIPModal);
-        if (ipPreviouslyFocused) ipPreviouslyFocused.focus();
+
+        // Return focus to previously focused element
+        if (ipPreviouslyFocused && ipPreviouslyFocused.focus) {
+            ipPreviouslyFocused.focus();
+        }
     }, 150);
 }
 
 function ipEscHandler(e) {
-    if (e.key === 'Escape') closeIPModal();
+    if (e.key === 'Escape') {
+        closeIPModal();
+    }
 }
 
 function ipFocusTrap(e) {
     const modal = document.getElementById('ipModal');
-    if (modal.classList.contains('hidden')) return;
+    if (!modal || modal.classList.contains('hidden')) return;
 
     const focusables = modal.querySelectorAll(
         'a[href], button, textarea, input, select, summary, [tabindex]:not([tabindex="-1"])'
     );
+
     if (!focusables.length) return;
 
     if (!modal.contains(e.target)) {
@@ -374,12 +396,19 @@ function ipFocusTrap(e) {
     }
 }
 
-// Close button
+// Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('ipCloseBtn');
-    if (btn) btn.addEventListener('click', closeIPModal);
-});
+    const closeBtn = document.getElementById('ipCloseBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeIPModal);
+    }
 
+    // Optional: Close when clicking backdrop
+    const backdrop = document.getElementById('ipBackdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', closeIPModal);
+    }
+});
 
 
 
@@ -455,7 +484,7 @@ tailwind.config = {
 }
 
 
-   
+
 
 // Back to top button functionality
 const backToTopButton = document.getElementById('back-to-top');
