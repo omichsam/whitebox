@@ -5,16 +5,11 @@ include("../../connect.php");
 $male = "";
 $female = "";
 
-// Get user email from session – now plain text, no base64_decode
+// Get user email from session (plain text, no base64_decode)
 if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
     $user = $_SESSION["username"];
 } else {
-    // Fallback: if session not set, try POST? But this page is likely loaded via AJAX with my_id?
-    // For consistency, you might also accept POST['my_id'] if needed.
-    $user = "";
-}
-
-if (empty($user)) {
+    // Fallback – though session should exist
     die("User not logged in.");
 }
 
@@ -26,11 +21,10 @@ if (!$get) {
 }
 
 $user_id = $get['id'] ?? 0;
-
 if ($user_id == 0) {
     die("Invalid user ID.");
 }
- ?>
+?>
             <section class="content-header">
 
 

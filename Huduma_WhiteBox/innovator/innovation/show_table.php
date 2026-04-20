@@ -1,338 +1,311 @@
 <?php
 include("../../../base_connect.php");
 include("../../../connect.php");
-//$innovation=base64_decode($_POST['innovation']);
 
-$today=time();
-$loginuser=base64_decode($_SESSION["username"]);
-if($loginuser){
-
-}else{
-  $loginuser=base64_decode($_POST['my_id']);
-}
-$get_user=mysqli_query($con,"SELECT * FROM users WHERE email='$loginuser'") or die(mysqli_error($con));
-$get=mysqli_fetch_assoc($get_user);
-$first_name=$get['first_name'];
-$user_id=$get['id'];
-$last_name=$get['last_name'];
-$company_class="hidden";
-$documenth="";
-$originality_text="";
-$older_ppt="";
-$show_nbpart="not_shown";
-$orignald_data="";
-$orignal_data="not_shown";
-$newbig_sectorshow="not_shown";
- $companyshown="not_shown";
- $new_sectorshow="not_shown";
- $solution="";
- $targeted="";
- $mycompany_id="";
-     $impact="";
-     $need="";
-     $originality="";
-      $busines_model="";
-     $target="";
-     $requirements="";
-     $attachments="";
-     $individual_check="checked";
-     $company_check="";
-     $ip_check="";
-     $terms_check="";
-      $innovation="";
-     $solution="";
-     $impact="";
-     $need="";
-     $busines_model="";
-     $property_attachement="";
-     $accepts_terms_1="";
-    $intellectual_protection="";
-
-
-     $Innovation_name="";
-     $sector_id="";
-     $InnovationBig4Sector="";
-     $innovator_type="";
-
-       $originality_explanation="";
-     $Research_sources="";
-    
-$research="";
-     //$stage="";
-     $intellectual_protection="";
-      $newsector="";
-  $bg4id_name="";
-  $innovation_levelshow="not_shown";
-  $InnovationLevel="";
-  $useful_links="";
-//$my_userde=encrypt($my_user,$key);
-//echo base64_encode($new_status;
- $implementors="";
- $patner="";
- $fund="";
- $commun="";
- $statement="";
- $statepart="";
- $statecommn="";
- $statefund="";
- $stateimple="";
- $checked_implementers="";
-$checked_funding="";
-$checked_ipartners="";
-$checked_others="";
-$show_others="not_shown";
-$cheinnovations=mysqli_query($con,"SELECT * FROM innovations_table WHERE user_id='$user_id' and Status='pending'") or die(mysqli_error($con));
-
-  if(mysqli_num_rows($cheinnovations)>0){
-
-$sqlx="SELECT * FROM innovations_table where user_id='$user_id' and Status='pending'";
-
-    $query_runx=mysqli_query($con,$sqlx) or die($query_runx."<br/><br/>".mysqli_error($con));
-
-    while($row=mysqli_fetch_array($query_runx)){
-     $research=$row['research'];
-     $innovation=$row['Innovation_Id'];
-     $solution=$row['solution'];
-     $impact=$row['impact'];
-     $need=$row['need'];
-     $busines_model=$row['busines_model'];
-     $target=$row['target'];
-     $requirements=$row['requirements'];
-     $attachments=$row['attachments'];
-     $accepts_terms_1=$row['accepts_terms_1'];
-    $intellectual_protection=$row['intellectual_protection'];
-$originality=$row['originality'];
-     $company_id=$row['company_id'];
-     $Innovation_name=$row['Innovation_name'];
-     $sector_id=$row['sector_id'];
-     $InnovationBig4Sector=$row['InnovationBig4Sector'];
-     $innovator_type=$row['innovator_type'];
-
-       $originality_explanation=$row['originality_explanation'];
-     $property_attachement=$row['property_attachement'];
-     $Research_sources=$row['Research_sources'];
-  $InnovationLevel=$row['stage'];
-     $accepts_terms_2=$row['accepts_terms_2'];
-     //$stage=$row['stage'];
-     $intellectual_protection=$row['intellectual_protection'];
-     $useful_links=$row['useful_links'];
- }
-}
-$orignal_data="not_shown";
-$orignald_data="";
-if($originality){
-  if($originality=="Yes"){
-$originality_text="Why it is my original idea";
-  }else{
-$originality_text="Why this innovation is not my own originality idea";
-  }
-$orignal_data="";
-$orignald_data=$originality_explanation;
-$origdata=$originality;
-}else{
-$origdata="";
-$orignal_data="not_shown";
-}
- $sho_ppt="not_shown";
-    $ppta="";
-     $older_ppt="";
-if($property_attachement){
-    $sho_ppt="";
-    $ppta="Yes";
-    $older_ppt="fa fa-file-pdf-o fa-2x";
-}else{
-    $sho_ppt="not_shown";
-    $ppta="No";
-    $older_ppt="";
+// Get user email from session (plain text)
+if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+    $loginuser = $_SESSION["username"];
+} else {
+    $loginuser = base64_decode($_POST['my_id'] ?? '');
 }
 
-$sqlxW="SELECT * FROM innovation_expectation where Innovation_id='$innovation'";
-    $query_runxW=mysqli_query($con,$sqlxW) or die($query_runxW."<br/><br/>".mysqli_error($con));
+if (empty($loginuser)) {
+    die("User not identified.");
+}
 
-    while($row=mysqli_fetch_array($query_runxW)){
-  $petnership_implementors=$row['petnership_implementors'];
-  $patnership_innovators=$row['patnership_innovators'];
-   $funding=$row['funding'];
-    $communities=$row['communities'];
-    if($petnership_implementors){
-     $implementors=$petnership_implementors; 
+$get_user = mysqli_query($con, "SELECT * FROM users WHERE email='$loginuser'") or die(mysqli_error($con));
+$get = mysqli_fetch_assoc($get_user);
 
- $checked_implementers="checked";
-    }else{
-        
+if (!$get) {
+    die("User record not found.");
+}
+
+$first_name = $get['first_name'] ?? '';
+$user_id    = $get['id'] ?? 0;
+$last_name  = $get['last_name'] ?? '';
+
+if ($user_id == 0) {
+    die("Invalid user ID.");
+}
+
+// The rest of your variable initializations and logic stays exactly the same
+$company_class = "hidden";
+$documenth = "";
+$originality_text = "";
+$older_ppt = "";
+$show_nbpart = "not_shown";
+$orignald_data = "";
+$orignal_data = "not_shown";
+$newbig_sectorshow = "not_shown";
+$companyshown = "not_shown";
+$new_sectorshow = "not_shown";
+$solution = "";
+$targeted = "";
+$mycompany_id = "";
+$impact = "";
+$need = "";
+$originality = "";
+$busines_model = "";
+$target = "";
+$requirements = "";
+$attachments = "";
+$individual_check = "checked";
+$company_check = "";
+$ip_check = "";
+$terms_check = "";
+$innovation = "";
+$property_attachement = "";
+$accepts_terms_1 = "";
+$intellectual_protection = "";
+$Innovation_name = "";
+$sector_id = "";
+$InnovationBig4Sector = "";
+$innovator_type = "";
+$originality_explanation = "";
+$Research_sources = "";
+$research = "";
+$intellectual_protection = "";
+$newsector = "";
+$bg4id_name = "";
+$innovation_levelshow = "not_shown";
+$InnovationLevel = "";
+$useful_links = "";
+$implementors = "";
+$patner = "";
+$fund = "";
+$commun = "";
+$statement = "";
+$statepart = "";
+$statecommn = "";
+$statefund = "";
+$stateimple = "";
+$checked_implementers = "";
+$checked_funding = "";
+$checked_ipartners = "";
+$checked_others = "";
+$show_others = "not_shown";
+
+$cheinnovations = mysqli_query($con, "SELECT * FROM innovations_table WHERE user_id='$user_id' and Status='pending'") or die(mysqli_error($con));
+
+if (mysqli_num_rows($cheinnovations) > 0) {
+    $sqlx = "SELECT * FROM innovations_table where user_id='$user_id' and Status='pending'";
+    $query_runx = mysqli_query($con, $sqlx) or die($query_runx . "<br/><br/>" . mysqli_error($con));
+    while ($row = mysqli_fetch_array($query_runx)) {
+        $research = $row['research'];
+        $innovation = $row['Innovation_Id'];
+        $solution = $row['solution'];
+        $impact = $row['impact'];
+        $need = $row['need'];
+        $busines_model = $row['busines_model'];
+        $target = $row['target'];
+        $requirements = $row['requirements'];
+        $attachments = $row['attachments'];
+        $accepts_terms_1 = $row['accepts_terms_1'];
+        $intellectual_protection = $row['intellectual_protection'];
+        $originality = $row['originality'];
+        $company_id = $row['company_id'];
+        $Innovation_name = $row['Innovation_name'];
+        $sector_id = $row['sector_id'];
+        $InnovationBig4Sector = $row['InnovationBig4Sector'];
+        $innovator_type = $row['innovator_type'];
+        $originality_explanation = $row['originality_explanation'];
+        $property_attachement = $row['property_attachement'];
+        $Research_sources = $row['Research_sources'];
+        $InnovationLevel = $row['stage'];
+        $accepts_terms_2 = $row['accepts_terms_2'];
+        $useful_links = $row['useful_links'];
     }
-     if($funding){
-     $fund=$funding;   
-$checked_funding="checked";
-    }else{
-        
+}
+
+$orignal_data = "not_shown";
+$orignald_data = "";
+if ($originality) {
+    if ($originality == "Yes") {
+        $originality_text = "Why it is my original idea";
+    } else {
+        $originality_text = "Why this innovation is not my own originality idea";
     }
-     if($communities){
-     $commun=$communities;  
-$checked_others="checked"; 
-$show_others="";
-    }else{
-        
+    $orignal_data = "";
+    $orignald_data = $originality_explanation;
+    $origdata = $originality;
+} else {
+    $origdata = "";
+    $orignal_data = "not_shown";
+}
+
+$sho_ppt = "not_shown";
+$ppta = "";
+$older_ppt = "";
+if ($property_attachement) {
+    $sho_ppt = "";
+    $ppta = "Yes";
+    $older_ppt = "fa fa-file-pdf-o fa-2x";
+} else {
+    $sho_ppt = "not_shown";
+    $ppta = "No";
+    $older_ppt = "";
+}
+
+$sqlxW = "SELECT * FROM innovation_expectation where Innovation_id='$innovation'";
+$query_runxW = mysqli_query($con, $sqlxW) or die($query_runxW . "<br/><br/>" . mysqli_error($con));
+while ($row = mysqli_fetch_array($query_runxW)) {
+    $petnership_implementors = $row['petnership_implementors'];
+    $patnership_innovators = $row['patnership_innovators'];
+    $funding = $row['funding'];
+    $communities = $row['communities'];
+    if ($petnership_implementors) {
+        $implementors = $petnership_implementors;
+        $checked_implementers = "checked";
     }
-     if($patnership_innovators){
-     $patner=$patnership_innovators;
-$checked_ipartners="checked";  
-    }else{
-        
+    if ($funding) {
+        $fund = $funding;
+        $checked_funding = "checked";
     }
-    
- 
-   if($implementors){
-      $stateimple=" . ";
-   }else{
-       
-   }
-   if($fund){
-      $statefund=" . ";
-   }else{
-       
-   }
-   if($commun){
-      $statecommn=" . ";
-   }else{
-       
-   }
-    if($patner){
-      $statepart=" . ";
-   }else{
-       
-   }
+    if ($communities) {
+        $commun = $communities;
+        $checked_others = "checked";
+        $show_others = "";
     }
-   
-if($InnovationLevel){
-$innovation_levelshow="";
-}else{
-$innovation_levelshow="not_shown";
-}
- $company_name="";
- $get_bigfoursectors=mysqli_query($con,"SELECT company_name FROM company WHERE id='$company_id'") or die(mysqli_error($con));
-$getbigid=mysqli_fetch_assoc($get_bigfoursectors);
-if($getbigid){
- $company_name=$getbigid['company_name'];
-
-if($company_name){
-$mycompany_id=$company_name;
-}else{
-    $mycompany_id="";
-}
-
-}else{
-
+    if ($patnership_innovators) {
+        $patner = $patnership_innovators;
+        $checked_ipartners = "checked";
+    }
+    if ($implementors) {
+        $stateimple = " . ";
+    }
+    if ($fund) {
+        $statefund = " . ";
+    }
+    if ($commun) {
+        $statecommn = " . ";
+    }
+    if ($patner) {
+        $statepart = " . ";
+    }
 }
 
- $company_class="hidden";
- $companyshown="not_shown";
- if($innovator_type=="Individual"){
-$individual_check="checked";
-$company_class="hidden";
-  $company_check=""; 
-   $companyshown="not_shown";    
- }else{
-    $company_class="";
-    $individual_check="";
-   $company_check="checked"; 
-    $companyshown="not_shown";
- }
-
-if($intellectual_protection){
-$ip_check="checked";
-}else{
-$ip_check="";
+if ($InnovationLevel) {
+    $innovation_levelshow = "";
+} else {
+    $innovation_levelshow = "not_shown";
 }
 
-if($accepts_terms_1){
- $terms_check="checked";
-}else{
- $terms_check="";
+$company_name = "";
+$get_bigfoursectors = mysqli_query($con, "SELECT company_name FROM company WHERE id='$company_id'") or die(mysqli_error($con));
+$getbigid = mysqli_fetch_assoc($get_bigfoursectors);
+if ($getbigid) {
+    $company_name = $getbigid['company_name'];
+    if ($company_name) {
+        $mycompany_id = $company_name;
+    } else {
+        $mycompany_id = "";
+    }
+} else {
+    $mycompany_id = "";
 }
 
-$get_sector=mysqli_query($con,"SELECT name FROM sectors WHERE id='$sector_id'") or die(mysqli_error($con));
-$getid=mysqli_fetch_assoc($get_sector);
-
- $newsector=$getid['name'];
- $get_bigfoursectors=mysqli_query($con,"SELECT Name FROM bigfoursectors WHERE id='$InnovationBig4Sector'") or die(mysqli_error($con));
-$getbigid=mysqli_fetch_assoc($get_bigfoursectors);
-
- $bg4id_name=$getbigid['Name'];
-
-$newbig_sectorshow="not_shown";
-if($bg4id_name){
-$newbig_sectorshow="";
-}else{
-$newbig_sectorshow="not_shown";
+$company_class = "hidden";
+$companyshown = "not_shown";
+if ($innovator_type == "Individual") {
+    $individual_check = "checked";
+    $company_class = "hidden";
+    $company_check = "";
+    $companyshown = "not_shown";
+} else {
+    $company_class = "";
+    $individual_check = "";
+    $company_check = "checked";
+    $companyshown = "not_shown";
 }
 
-$new_sectorshow="not_shown";
-if($newsector){
-$new_sectorshow="";
-}else{
-$new_sectorshow="not_shown";
+if ($intellectual_protection) {
+    $ip_check = "checked";
+} else {
+    $ip_check = "";
 }
 
-$havepatners="No";
-$show_nbpart="not_shown";
-$shownumbers="not_shown";
-$howmany=0;
-$sqlx="SELECT * FROM innovators_partners where Innovation_Id='$innovation'";
-
-                                    $query_runx=mysqli_query($con,$sqlx) or die($query_runx."<br/><br/>".mysqli_error($con));
-
-                                    while($row=mysqli_fetch_array($query_runx)){
-                                        $howmany=$howmany+1;
-                                    }
-                                    if($howmany>0){
-                                    $show_nbpart="";
-                                  $havepatners="Yes";
-                                  $shownumbers="";
-                                    }else{
-                                 $havepatners="No";
-                                 $show_nbpart="not_shown";
-                                 $shownumbers="not_shown";
-                                    }
-$show_propertyd="not_shown";
-  $have_property="No";                                  
-if($property_attachement){
- $have_property="Yes"; 
- $show_propertyd="";
-}else{
-     $have_property="No"; 
-     $show_propertyd="not_shown";
-
-}
-$showdocs="not_shown";
-$documenth="";
-if($attachments){
-$documenth="fa fa-file-pdf-o fa-2x";
-$showdocs="";
-}else{
-$documenth="";
-$showdocs="not_shown";
+if ($accepts_terms_1) {
+    $terms_check = "checked";
+} else {
+    $terms_check = "";
 }
 
-$show_links="not_shown";
-if($useful_links){
-    $show_links="";
+$get_sector = mysqli_query($con, "SELECT name FROM sectors WHERE id='$sector_id'") or die(mysqli_error($con));
+$getid = mysqli_fetch_assoc($get_sector);
+$newsector = $getid['name'] ?? '';
 
-}else{
-    $show_links="not_shown";
+$get_bigfoursectors = mysqli_query($con, "SELECT Name FROM bigfoursectors WHERE id='$InnovationBig4Sector'") or die(mysqli_error($con));
+$getbigid = mysqli_fetch_assoc($get_bigfoursectors);
+$bg4id_name = $getbigid['Name'] ?? '';
+
+$newbig_sectorshow = "not_shown";
+if ($bg4id_name) {
+    $newbig_sectorshow = "";
+} else {
+    $newbig_sectorshow = "not_shown";
 }
-$showredt="not_shown";
-if($research){
-$showredt="";
-}else{
-$showredt="not_shown";
+
+$new_sectorshow = "not_shown";
+if ($newsector) {
+    $new_sectorshow = "";
+} else {
+    $new_sectorshow = "not_shown";
 }
 
+$havepatners = "No";
+$show_nbpart = "not_shown";
+$shownumbers = "not_shown";
+$howmany = 0;
+$sqlx = "SELECT * FROM innovators_partners where Innovation_Id='$innovation'";
+$query_runx = mysqli_query($con, $sqlx) or die($query_runx . "<br/><br/>" . mysqli_error($con));
+while ($row = mysqli_fetch_array($query_runx)) {
+    $howmany = $howmany + 1;
+}
+if ($howmany > 0) {
+    $show_nbpart = "";
+    $havepatners = "Yes";
+    $shownumbers = "";
+} else {
+    $havepatners = "No";
+    $show_nbpart = "not_shown";
+    $shownumbers = "not_shown";
+}
 
+$show_propertyd = "not_shown";
+$have_property = "No";
+if ($property_attachement) {
+    $have_property = "Yes";
+    $show_propertyd = "";
+} else {
+    $have_property = "No";
+    $show_propertyd = "not_shown";
+}
 
+$showdocs = "not_shown";
+$documenth = "";
+if ($attachments) {
+    $documenth = "fa fa-file-pdf-o fa-2x";
+    $showdocs = "";
+} else {
+    $documenth = "";
+    $showdocs = "not_shown";
+}
 
+$show_links = "not_shown";
+if ($useful_links) {
+    $show_links = "";
+} else {
+    $show_links = "not_shown";
+}
 
+$showredt = "not_shown";
+if ($research) {
+    $showredt = "";
+} else {
+    $showredt = "not_shown";
+}
 ?>
+
 
 
                                       <table id="details_df" class="table table-responsive table-striped col-md-12 table-bordered" width="100%">
@@ -452,12 +425,6 @@ $showredt="not_shown";
 
       }
     })
-    /*
-    $(".close_fulld").click(function(){
-      var innovation='<?php echo $innovation?>';
-      $.post("modules/system/clerk/pages/submition/view_information.php",{innovation:innovation},function(data){
-       $("#home").html(data);
-       });
-    })*/
+   
   })
 </script>
