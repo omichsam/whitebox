@@ -1,15 +1,17 @@
 <?php
-session_start();
- if(isset($_SESSION["username"])) 
-{
-
-$loginuser=base64_decode($_SESSION["username"]);
-$user=base64_decode($_SESSION["username"]);
-//echo $user;
-//echo $_SESSION["username"];
-}else{
-$_SESSION = array(); 
-// Destroy the session.
-session_destroy();
+// Start session only if not already active
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
- ?>
+
+// If user is logged in, retrieve the plain email from session
+if (isset($_SESSION["username"])) {
+    // The username is stored as plain text (not base64) by login.php
+    $loginuser = $_SESSION["username"];
+    $user      = $_SESSION["username"];
+} else {
+    // No active session – clear any residual data
+    $_SESSION = array();
+    session_destroy();
+}
+?>

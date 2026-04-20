@@ -1,12 +1,35 @@
 <?php
 include("../../base_connect.php");
 include("../../connect.php");
- $male="";
- $female="";
-$user=base64_decode($_SESSION["username"]);
-$get_user=mysqli_query($con,"SELECT * FROM users WHERE email='$user'") or die(mysqli_error($con));
-$get=mysqli_fetch_assoc($get_user);
- $user_id=$get['id'];
+
+$male = "";
+$female = "";
+
+// Get user email from session – now plain text, no base64_decode
+if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+    $user = $_SESSION["username"];
+} else {
+    // Fallback: if session not set, try POST? But this page is likely loaded via AJAX with my_id?
+    // For consistency, you might also accept POST['my_id'] if needed.
+    $user = "";
+}
+
+if (empty($user)) {
+    die("User not logged in.");
+}
+
+$get_user = mysqli_query($con, "SELECT * FROM users WHERE email='$user'") or die(mysqli_error($con));
+$get = mysqli_fetch_assoc($get_user);
+
+if (!$get) {
+    die("User record not found.");
+}
+
+$user_id = $get['id'] ?? 0;
+
+if ($user_id == 0) {
+    die("Invalid user ID.");
+}
  ?>
             <section class="content-header">
 

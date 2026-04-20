@@ -1,10 +1,13 @@
 <?php
-include ("../../base_connect.php");
-include ("../../connect.php");
+session_start(); // START SESSION
+
+include("../../base_connect.php");
+include("../../connect.php");
+
 $yeard = date('Y');
 $male = "";
 $female = "";
-$pdtp_number ="";
+$pdtp_number = "";
 $University_id = "";
 $EducationLevel_id = "";
 $College = "";
@@ -17,29 +20,37 @@ $county_name = "";
 $fUniversity_id = "";
 $countryName = "";
 $education_high = "";
-$user = base64_decode($_SESSION["username"]);
-//echo $user."user";
+
+// Get user email from session (plain text, not base64)
+$user = $_SESSION["username"] ?? '';
+
+if (empty($user)) {
+    // Fallback – though ideally session should always exist
+    die("User not logged in.");
+}
+
 $get_user = mysqli_query($con, "SELECT * FROM users WHERE email='$user'") or die(mysqli_error($con));
 $get = mysqli_fetch_assoc($get_user);
+
 if ($get) {
-    $first_name = $get['first_name'];
-    $last_name = $get['last_name'];
-    $bio = $get['bio'];
-    $gender = $get['gender'];
-    $user_id = $get['id'];
-    $dob = $get['dob'];
-    $pic = $get['pic'];
-    $country = $get['country'];
-    $county_id = $get['county_id'];
-    $user_state = $get['user_state'];
-    $city = $get['city'];
-    $address = $get['address'];
-    $postal = $get['postal'];
-    $provider = $get['provider'];
-    $provider_id = $get['provider_id'];
-    $county = $get['county'];
-    $phone = $get['phone'];
-    $email = $get['email'];
+    $first_name   = $get['first_name'] ?? '';
+    $last_name    = $get['last_name'] ?? '';
+    $bio          = $get['bio'] ?? '';
+    $gender       = $get['gender'] ?? '';
+    $user_id      = $get['id'] ?? '';
+    $dob          = $get['dob'] ?? '';
+    $pic          = $get['pic'] ?? '';
+    $country      = $get['country'] ?? '';
+    $county_id    = $get['county_id'] ?? '';
+    $user_state   = $get['user_state'] ?? '';
+    $city         = $get['city'] ?? '';
+    $address      = $get['address'] ?? '';
+    $postal       = $get['postal'] ?? '';
+    $provider     = $get['provider'] ?? '';
+    $provider_id  = $get['provider_id'] ?? '';
+    $county       = $get['county'] ?? '';
+    $phone        = $get['phone'] ?? '';
+    $email        = $get['email'] ?? '';
 
     if ($gender == "male") {
         $male = "checked";
@@ -47,63 +58,43 @@ if ($get) {
         $female = "checked";
     }
 } else {
-
+    // User not found – handle gracefully
+    die("User record not found.");
 }
+
+// Education details
 $get_education = mysqli_query($con, "SELECT * FROM education WHERE user_id='$user_id'") or die(mysqli_error($con));
 $geteducation = mysqli_fetch_assoc($get_education);
 if ($geteducation) {
-    $fUniversity_id = $geteducation['University_id'];
-    $EducationLevel_id = $geteducation['EducationLevel_id'];
-    $College = $geteducation['College'];
-    $PrimarySchool = $geteducation['PrimarySchool'];
-    $SecondarySchool = $geteducation['SecondarySchool'];
-    $Certifications = $geteducation['Certifications'];
-    $education_high = $geteducation['education_high'];
-    $pdtp_number = $geteducation['pdtp_number'];
-
-    if ($education_high) {
-        $education_d = "";
-    } else {
-    }
-} else {
-
+    $fUniversity_id    = $geteducation['University_id'] ?? '';
+    $EducationLevel_id = $geteducation['EducationLevel_id'] ?? '';
+    $College           = $geteducation['College'] ?? '';
+    $PrimarySchool     = $geteducation['PrimarySchool'] ?? '';
+    $SecondarySchool   = $geteducation['SecondarySchool'] ?? '';
+    $Certifications    = $geteducation['Certifications'] ?? '';
+    $education_high    = $geteducation['education_high'] ?? '';
+    $pdtp_number       = $geteducation['pdtp_number'] ?? '';
 }
-//echo $College."education college";
-//get university
+
+// University name
 $get_university = mysqli_query($con, "SELECT * FROM universities WHERE id='$fUniversity_id'") or die(mysqli_error($con));
 $getuniversity = mysqli_fetch_assoc($get_university);
-if ($getuniversity) {
+$UniversityName = $getuniversity['UniversityName'] ?? '';
 
-
-    $UniversityName = $getuniversity['UniversityName'];
-} else {
-}
+// Education level name
 $geteducation_levels = mysqli_query($con, "SELECT * FROM education_levels WHERE id='$EducationLevel_id'") or die(mysqli_error($con));
 $geteducationlevels = mysqli_fetch_assoc($geteducation_levels);
-if ($geteducationlevels) {
+$EducationLevelName = $geteducationlevels['EducationLevelName'] ?? '';
 
-    $EducationLevelName = $geteducationlevels['EducationLevelName'];
-} else {
-
-}
-
-//country
+// Country name
 $getcountry = mysqli_query($con, "SELECT * FROM countries WHERE sortname='$country'") or die(mysqli_error($con));
 $getecountry = mysqli_fetch_assoc($getcountry);
-if ($getecountry) {
-    $countryName = $getecountry['name'];
-} else {
+$countryName = $getecountry['name'] ?? '';
 
-}
-//get counties
+// County name
 $getccounties = mysqli_query($con, "SELECT * FROM counties WHERE serial_no='$county_id'") or die(mysqli_error($con));
 $getcounties = mysqli_fetch_assoc($getccounties);
-if ($getcounties) {
-
-    $county_name = $getcounties['county_name'];
-} else {
-
-}
+$county_name = $getcounties['county_name'] ?? '';
 
 ?>
 <script type="text/javascript">

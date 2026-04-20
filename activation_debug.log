@@ -1160,3 +1160,15 @@
 [2025-12-17 05:25:23] SHOWING ACTIVATION FORM
 [2025-12-17 05:25:23] Database connection closed
 [2025-12-17 05:25:23] === ACTIVATION SCRIPT ENDED ===
+[2026-04-20 10:24:35] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"GET","action":"none","session_id":"4oghokd5vcaersqljov2tl2rba","ip":"127.0.0.1"}
+[2026-04-20 10:24:35] Database connection SUCCESS
+[2026-04-20 10:24:35] Processing action: 
+[2026-04-20 10:24:35] SHOWING ACTIVATION FORM
+[2026-04-20 10:24:35] Database connection closed
+[2026-04-20 10:24:35] === ACTIVATION SCRIPT ENDED ===
+[2026-04-20 10:25:02] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"4oghokd5vcaersqljov2tl2rba","ip":"127.0.0.1"}
+[2026-04-20 10:25:02] Database connection SUCCESS
+[2026-04-20 10:25:02] Processing action: resend
+[2026-04-20 10:25:02] RESEND ACTIVATION CODE | Data: {"email_encoded":"d2FqaXJ0ZXN0QGdtYWlsLmNvbQ=="}
+[2026-04-20 10:25:02] Processing resend for | Data: {"email":"waj..."}
+[2026-04-20 10:25:02] Check user query failed | Data: Table 'whitebox.users' doesn't exist

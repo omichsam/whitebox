@@ -507,6 +507,8 @@ while ($row = mysqli_fetch_array($query_runxlk)) {
         </ul>
     </div>
 </nav>
+
+<input type="hidden" id="user_email" value="<?php echo base64_encode($user); ?>">
 <!-- Nav bar End -->
 </header>
 <!-- //Header End -->
