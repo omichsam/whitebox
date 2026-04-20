@@ -1,56 +1,64 @@
-
-<?php 
+<?php
 include("../../../base_connect.php");
 include("../../../connect.php");
-$data="";
-$datab="not_shown";
-$dated=time();
- //session_start();
-  $loginuser=base64_decode($_SESSION["username"]);
-  //echo $loginuser;
-if($loginuser){
-$loginuser=$_POST['userd'];
-}else{
 
+// Get user email from session (plain text)
+if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+    $loginuser = $_SESSION["username"];
+} else {
+    $loginuser = $_POST['userd'] ?? '';
 }
-$get_user=mysqli_query($con,"SELECT * FROM users WHERE email='$loginuser'") or die(mysqli_error($con));
-$get=mysqli_fetch_assoc($get_user);
-$first_name=$get['first_name'];
-$id=$get['id'];
-$last_name=$get['last_name'];
-$fullname=mysqli_real_escape_string($con,"user".$id."_".$first_name."_".$last_name."_".$dated);
 
-
-$new_name=$loginuser."_innovator_";
-if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
-{
-       if(isset($_FILES['upfile']['name'])){
-       		$picname =$_FILES['upfile']['name'];
-         
-
-			$picsize =$_FILES['upfile']['size'];
-			$pictmp =$_FILES['upfile']['tmp_name'];
-		//	@unlink('../../../../'.$OldprofilePic.'');
-			 //@mkdir("../../images/innovators/");
-			 /*upload profile images to  user folders*/		  									  		  
-	 		 @move_uploaded_file($pictmp,"../../images/innovators/".$_FILES['upfile']['name']);
-	 		  rename("../../images/innovators/".$_FILES['upfile']['name'],"../../images/innovators/".$fullname.".png");
-		   // $profile="im$new_names;
-	 		 $new_names=$fullname.".png";
-$update=mysqli_query($con,"UPDATE users SET pic='$new_names' WHERE email='$loginuser'") or die(mysqli_error($con));
-	   	if($update){
-    echo "success";
-	   	}else{
-
-	   	}
-       }else{
-       	//$profile=$OldprofilePic;
-       }
-	   	 
-}else{
-	echo "error";
+if (empty($loginuser)) {
+    echo "user_not_found";
+    exit;
 }
-      ?>
-      
-      
-      
+
+$dated = time();
+
+$get_user = mysqli_query($con, "SELECT * FROM users WHERE email='$loginuser'") or die(mysqli_error($con));
+$get = mysqli_fetch_assoc($get_user);
+if (!$get) {
+    echo "user_not_found";
+    exit;
+}
+
+$first_name = $get['first_name'] ?? '';
+$id = $get['id'] ?? 0;
+$last_name = $get['last_name'] ?? '';
+$fullname = mysqli_real_escape_string($con, "user" . $id . "_" . $first_name . "_" . $last_name . "_" . $dated);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['upfile']['name']) && $_FILES['upfile']['error'] == 0) {
+    $picname = $_FILES['upfile']['name'];
+    $picsize = $_FILES['upfile']['size'];
+    $pictmp = $_FILES['upfile']['tmp_name'];
+
+    // Ensure target directory exists
+    $target_dir = "../../images/innovators/";
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Move uploaded file
+    $target_file = $target_dir . basename($picname);
+    if (move_uploaded_file($pictmp, $target_file)) {
+        // Rename to desired name
+        $new_names = $fullname . ".png";
+        $new_path = $target_dir . $new_names;
+        if (rename($target_file, $new_path)) {
+            $update = mysqli_query($con, "UPDATE users SET pic='$new_names' WHERE email='$loginuser'") or die(mysqli_error($con));
+            if ($update) {
+                echo "success";
+            } else {
+                echo "db_error";
+            }
+        } else {
+            echo "rename_failed";
+        }
+    } else {
+        echo "upload_failed";
+    }
+} else {
+    echo "no_file";
+}
+?>

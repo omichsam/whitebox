@@ -99,10 +99,14 @@ $county_name = $getcounties['county_name'] ?? '';
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
-        // alert()
-        var loader = $("#loader").html();
+        
         $("#save_profile").click(function () {
-            $("#profile_erros").html("Saving" + loader)
+        var loader = $("#loader").html() || "Loading...";
+        $("#profile_erros").html("Saving..." + loader).css("color", "black");
+  
+        // var loader = $("#loader").html();
+        // $("#save_profile").click(function () {
+        //     $("#profile_erros").html("Saving" + loader)
         })
     })
 </script>
