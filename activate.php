@@ -69,9 +69,11 @@ function generateCode($length = 8)
 // Function to test mail system directly
 function testMailSystem($email, $subject, $message)
 {
+    global $con; // Make database connection available
+
     debug_log("Testing mail system directly");
 
-    $mail_file = "Huduma_WhiteBox/mails/general.php";
+    $mail_file = __DIR__ . "/Huduma_WhiteBox/mails/general.php"; // Use absolute path
 
     if (!file_exists($mail_file)) {
         debug_log("Mail file not found: $mail_file");
@@ -87,10 +89,11 @@ function testMailSystem($email, $subject, $message)
 
     ob_start();
 
-    // Set required variables
-    $mail_subject = $subject;
-    $mail_message = $message;
-    $mail_to = $email;
+    // Set variables expected by general.php
+    $_POST['user'] = $email;        // To satisfy $useremail = $_POST['user'];
+    $subject = $subject;            // For $mail->Subject
+    $message = $message;            // For $mail->Body
+    $email = $email;                // For $mail->AddAddress()
 
     try {
         include($mail_file);
