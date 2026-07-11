@@ -69,11 +69,9 @@ function generateCode($length = 8)
 // Function to test mail system directly
 function testMailSystem($email, $subject, $message)
 {
-    global $con; // Make database connection available
-
     debug_log("Testing mail system directly");
 
-    $mail_file = __DIR__ . "/Huduma_WhiteBox/mails/general.php"; // Use absolute path
+    $mail_file = "Huduma_WhiteBox/mails/general.php";
 
     if (!file_exists($mail_file)) {
         debug_log("Mail file not found: $mail_file");
@@ -89,11 +87,10 @@ function testMailSystem($email, $subject, $message)
 
     ob_start();
 
-    // Set variables expected by general.php
-    $_POST['user'] = $email;        // To satisfy $useremail = $_POST['user'];
-    $subject = $subject;            // For $mail->Subject
-    $message = $message;            // For $mail->Body
-    $email = $email;                // For $mail->AddAddress()
+    // Set required variables
+    $mail_subject = $subject;
+    $mail_message = $message;
+    $mail_to = $email;
 
     try {
         include($mail_file);
@@ -158,29 +155,29 @@ function sendActivationEmail($email, $first_name, $last_name, $activation_code)
                 <div style='background: #085c02; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;'>
                     <h1 style='margin: 0;'>WhiteBox Account Activation</h1>
                 </div>
-                
+
                 <div style='background: #f9f9f9; padding: 30px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 10px 10px;'>
                     <p>Dear <strong>$first_name $last_name</strong>,</p>
                     <p>Welcome to WhiteBox! Please activate your account to get started.</p>
-                    
+
                     <div style='background: #f0f8ff; border: 2px solid #085c02; padding: 20px; margin: 20px 0; text-align: center; border-radius: 8px;'>
                         <h3 style='color: #085c02; margin-top: 0;'>Your Activation Code</h3>
                         <div style='font-family: monospace; font-size: 32px; font-weight: bold; letter-spacing: 3px; color: #085c02; margin: 15px 0; padding: 10px; background: white; border: 1px solid #ccc; border-radius: 5px;'>
                             $activation_code
                         </div>
                         <p>Enter this 8-character code on the activation page</p>
-                       
+
                     </div>
-                    
+
                     <div style='background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;'>
                         <p><strong>Important:</strong> This code expires on $expiry_time</p>
                     </div>
-                    
+
                     <p>If you didn't create this account, please ignore this email.</p>
-                    
+
                     <p>Best regards,<br><strong>The WhiteBox Team</strong></p>
                 </div>
-                
+
                 <div style='text-align: center; margin-top: 20px; color: #666; font-size: 12px;'>
                     <p>© " . date('Y') . " WhiteBox. All rights reserved.</p>
                 </div>
@@ -317,9 +314,9 @@ function checkAndProcessActivation($email, $code)
     debug_log("CHECK AND PROCESS ACTIVATION", ['email' => $email, 'code' => $code]);
 
     // Check if token is valid and not expired
-    $check_query = "SELECT * FROM users WHERE email='$email' 
-                    AND token='$code' 
-                    AND token_type='activation' 
+    $check_query = "SELECT * FROM users WHERE email='$email'
+                    AND token='$code'
+                    AND token_type='activation'
                     AND token_expires_at > NOW()";
 
     debug_log("Executing query", $check_query);
@@ -347,7 +344,7 @@ function checkAndProcessActivation($email, $code)
         ]);
 
         // Activation successful - update user
-        $update_query = "UPDATE users SET 
+        $update_query = "UPDATE users SET
                          token = NULL,
                          token_type = NULL,
                          token_expires_at = NULL,
@@ -402,7 +399,7 @@ function getActivationFailureReason($email, $code)
     }
 
     // Check if token exists but expired
-    $check_expired = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND token='$code' 
+    $check_expired = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND token='$code'
                                         AND token_type='activation' AND token_expires_at <= NOW()");
 
     if (!$check_expired) {
@@ -559,7 +556,7 @@ function resendActivationCode()
     ]);
 
     // Update database
-    $update = mysqli_query($con, "UPDATE users SET 
+    $update = mysqli_query($con, "UPDATE users SET
                  token = '$activation_code',
                  token_type = '$token_type',
                  token_expires_at = '$token_expires_at',
@@ -638,16 +635,16 @@ function sendWelcomeEmail($email, $first_name, $last_name)
             <div style='padding: 30px; background: #f9f9f9;'>
                 <p>Dear <strong>$first_name $last_name</strong>,</p>
                 <p>Your WhiteBox account has been successfully activated!</p>
-                
+
                 <div style='text-align: center; margin: 30px 0;'>
-                    <a href='http://whitebox.go.ke/index1.php' 
-                       style='background: #085c02; color: white; padding: 15px 30px; 
+                    <a href='http://whitebox.go.ke/index1.php'
+                       style='background: #085c02; color: white; padding: 15px 30px;
                               text-decoration: none; border-radius: 6px; font-weight: bold;
                               font-size: 16px; display: inline-block;'>
                         Go to Login
                     </a>
                 </div>
-                
+
                 <p>Best regards,<br><strong>The WhiteBox Team</strong></p>
             </div>
         </div>

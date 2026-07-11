@@ -34,8 +34,8 @@ if ($get) {
    $dataid = "";
 }
 
-require __DIR__ . '/class.' . $mail_engine . '.php';
-require __DIR__ . '/class.phpmailer.php';
+require 'class.' . $mail_engine . '.php';
+require 'class.phpmailer.php';
 $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->isHTML($html_enabled);

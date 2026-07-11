@@ -1322,3 +1322,115 @@
 [2026-07-08 10:55:45] PHP mail() returned FALSE
 [2026-07-08 10:55:45] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":227}
 [2026-07-08 10:55:45] FAILED to send activation email
+[2026-07-08 11:33:44] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"GET","action":"none","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:33:44] Database connection SUCCESS
+[2026-07-08 11:33:44] Processing action: 
+[2026-07-08 11:33:44] SHOWING ACTIVATION FORM
+[2026-07-08 11:33:44] Database connection closed
+[2026-07-08 11:33:44] === ACTIVATION SCRIPT ENDED ===
+[2026-07-08 11:33:58] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:33:58] Database connection SUCCESS
+[2026-07-08 11:33:58] Processing action: resend
+[2026-07-08 11:33:58] RESEND ACTIVATION CODE | Data: {"email_encoded":"a29yaXJwcm9AZ21haWwuY29t"}
+[2026-07-08 11:33:58] Processing resend for | Data: {"email":"kor..."}
+[2026-07-08 11:33:58] User found | Data: {"name":"Korir koo"}
+[2026-07-08 11:33:58] Generated new code | Data: {"code":"4RXWVLQO","expires":"2026-07-09 11:33:58"}
+[2026-07-08 11:33:58] Database updated successfully
+[2026-07-08 11:33:58] Calling sendActivationEmail function
+[2026-07-08 11:33:58] SEND ACTIVATION EMAIL CALLED | Data: {"recipient":"korirpro@gmail.com","name":"Korir koo","code":"4RXWVLQO"}
+[2026-07-08 11:33:58] Attempting to send via custom mail system
+[2026-07-08 11:33:58] Testing mail system directly
+[2026-07-08 11:33:58] Mail file found, attempting to include
+[2026-07-08 11:34:01] Mail file included successfully | Data: {"output_length":96,"output_preview":"Mailer Error: SMTP connect() failed. https:\/\/github.com\/PHPMailer\/PHPMailer\/wiki\/Troubleshooting"}
+[2026-07-08 11:34:01] Custom mail system FAILED | Data: Unknown error
+[2026-07-08 11:34:01] Falling back to PHP mail()
+[2026-07-08 11:34:01] Calling PHP mail() function
+[2026-07-08 11:34:03] PHP mail() returned FALSE
+[2026-07-08 11:34:03] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":219}
+[2026-07-08 11:34:03] FAILED to send activation email
+[2026-07-08 11:34:09] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:34:09] Database connection SUCCESS
+[2026-07-08 11:34:09] Processing action: resend
+[2026-07-08 11:34:09] RESEND ACTIVATION CODE | Data: {"email_encoded":"a29yaXJwcm9AZ21haWwuY29t"}
+[2026-07-08 11:34:09] Processing resend for | Data: {"email":"kor..."}
+[2026-07-08 11:34:09] User found | Data: {"name":"Korir koo"}
+[2026-07-08 11:34:09] Generated new code | Data: {"code":"C3BFPV1R","expires":"2026-07-09 11:34:09"}
+[2026-07-08 11:34:09] Database updated successfully
+[2026-07-08 11:34:09] Calling sendActivationEmail function
+[2026-07-08 11:34:09] SEND ACTIVATION EMAIL CALLED | Data: {"recipient":"korirpro@gmail.com","name":"Korir koo","code":"C3BFPV1R"}
+[2026-07-08 11:34:09] Attempting to send via custom mail system
+[2026-07-08 11:34:09] Testing mail system directly
+[2026-07-08 11:34:09] Mail file found, attempting to include
+[2026-07-08 11:34:31] Mail file included successfully | Data: {"output_length":96,"output_preview":"Mailer Error: SMTP connect() failed. https:\/\/github.com\/PHPMailer\/PHPMailer\/wiki\/Troubleshooting"}
+[2026-07-08 11:34:31] Custom mail system FAILED | Data: Unknown error
+[2026-07-08 11:34:31] Falling back to PHP mail()
+[2026-07-08 11:34:31] Calling PHP mail() function
+[2026-07-08 11:34:33] PHP mail() returned FALSE
+[2026-07-08 11:34:33] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":219}
+[2026-07-08 11:34:33] FAILED to send activation email
+[2026-07-08 11:38:46] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"GET","action":"none","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:38:46] Database connection SUCCESS
+[2026-07-08 11:38:46] Processing action: 
+[2026-07-08 11:38:46] SHOWING ACTIVATION FORM
+[2026-07-08 11:38:46] Database connection closed
+[2026-07-08 11:38:46] === ACTIVATION SCRIPT ENDED ===
+[2026-07-08 11:38:59] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:38:59] Database connection SUCCESS
+[2026-07-08 11:38:59] Processing action: resend
+[2026-07-08 11:38:59] RESEND ACTIVATION CODE | Data: {"email_encoded":"a29yaXJwcm9AZ21haWwuY29t"}
+[2026-07-08 11:38:59] Processing resend for | Data: {"email":"kor..."}
+[2026-07-08 11:38:59] User found | Data: {"name":"Korir koo"}
+[2026-07-08 11:38:59] Generated new code | Data: {"code":"QLXUBV4A","expires":"2026-07-09 11:38:59"}
+[2026-07-08 11:38:59] Database updated successfully
+[2026-07-08 11:38:59] Calling sendActivationEmail function
+[2026-07-08 11:38:59] SEND ACTIVATION EMAIL CALLED | Data: {"recipient":"korirpro@gmail.com","name":"Korir koo","code":"QLXUBV4A"}
+[2026-07-08 11:38:59] Attempting to send via custom mail system
+[2026-07-08 11:38:59] Testing mail system directly
+[2026-07-08 11:38:59] Mail file found, attempting to include
+[2026-07-08 11:38:59] PHPMailer error captured | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:38:59] Custom mail system FAILED | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:38:59] Falling back to PHP mail()
+[2026-07-08 11:38:59] Calling PHP mail() function
+[2026-07-08 11:39:01] PHP mail() returned FALSE
+[2026-07-08 11:39:01] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":228}
+[2026-07-08 11:39:01] FAILED to send activation email
+[2026-07-08 11:39:12] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:39:12] Database connection SUCCESS
+[2026-07-08 11:39:12] Processing action: resend
+[2026-07-08 11:39:12] RESEND ACTIVATION CODE | Data: {"email_encoded":"a29yaXJwcm9AZ21haWwuY29t"}
+[2026-07-08 11:39:12] Processing resend for | Data: {"email":"kor..."}
+[2026-07-08 11:39:12] User found | Data: {"name":"Korir koo"}
+[2026-07-08 11:39:12] Generated new code | Data: {"code":"8LCNGU4A","expires":"2026-07-09 11:39:12"}
+[2026-07-08 11:39:12] Database updated successfully
+[2026-07-08 11:39:12] Calling sendActivationEmail function
+[2026-07-08 11:39:12] SEND ACTIVATION EMAIL CALLED | Data: {"recipient":"korirpro@gmail.com","name":"Korir koo","code":"8LCNGU4A"}
+[2026-07-08 11:39:12] Attempting to send via custom mail system
+[2026-07-08 11:39:12] Testing mail system directly
+[2026-07-08 11:39:12] Mail file found, attempting to include
+[2026-07-08 11:39:12] PHPMailer error captured | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:39:12] Custom mail system FAILED | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:39:12] Falling back to PHP mail()
+[2026-07-08 11:39:12] Calling PHP mail() function
+[2026-07-08 11:39:14] PHP mail() returned FALSE
+[2026-07-08 11:39:14] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":228}
+[2026-07-08 11:39:14] FAILED to send activation email
+[2026-07-08 11:39:21] === ACTIVATION SCRIPT STARTED === | Data: {"script":"activate.php","method":"POST","action":"resend","session_id":"l62hrhlkiq76hjkjh2j6f2v4ve","ip":"127.0.0.1"}
+[2026-07-08 11:39:21] Database connection SUCCESS
+[2026-07-08 11:39:21] Processing action: resend
+[2026-07-08 11:39:21] RESEND ACTIVATION CODE | Data: {"email_encoded":"a29yaXJwcm9AZ21haWwuY29t"}
+[2026-07-08 11:39:21] Processing resend for | Data: {"email":"kor..."}
+[2026-07-08 11:39:21] User found | Data: {"name":"Korir koo"}
+[2026-07-08 11:39:21] Generated new code | Data: {"code":"9NI18K6R","expires":"2026-07-09 11:39:21"}
+[2026-07-08 11:39:21] Database updated successfully
+[2026-07-08 11:39:21] Calling sendActivationEmail function
+[2026-07-08 11:39:21] SEND ACTIVATION EMAIL CALLED | Data: {"recipient":"korirpro@gmail.com","name":"Korir koo","code":"9NI18K6R"}
+[2026-07-08 11:39:21] Attempting to send via custom mail system
+[2026-07-08 11:39:21] Testing mail system directly
+[2026-07-08 11:39:21] Mail file found, attempting to include
+[2026-07-08 11:39:22] PHPMailer error captured | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:39:22] Custom mail system FAILED | Data: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[2026-07-08 11:39:22] Falling back to PHP mail()
+[2026-07-08 11:39:22] Calling PHP mail() function
+[2026-07-08 11:39:24] PHP mail() returned FALSE
+[2026-07-08 11:39:24] Last PHP error | Data: {"type":2,"message":"mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()","file":"C:\\xampp\\htdocs\\whitebox\\activate.php","line":228}
+[2026-07-08 11:39:24] FAILED to send activation email
